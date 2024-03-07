@@ -7,7 +7,10 @@ export default function Post({ postData }) {
             <p>{publishedAt}</p>
             <hr/>
             <p>{content}</p>
-            <img src={image} className="post-image" />
+            <img 
+                src={image} 
+                className="post-image"
+            />
         </div>
     );
 }

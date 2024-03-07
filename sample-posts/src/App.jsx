@@ -14,7 +14,7 @@ function App() {
   const loginHandler = () => {
     setIsLoggedIn(prevState => !prevState);
   }
-
+  
   useEffect(() => {
     if (isLoggedIn) {
       const getPostsAsync = async () => {
@@ -32,7 +32,11 @@ function App() {
         isLoggedIn={isLoggedIn} 
         loginHandler={loginHandler}
       />
-      { posts.length > 0 ? <Posts posts={posts}/> : <p>Please Login to View Posts</p> }
+      { 
+        posts.length > 0 ? 
+          <Posts posts={posts}/> :
+          <p>Please Login to View Posts</p> 
+      }
       <Footer />
     </>
   )
