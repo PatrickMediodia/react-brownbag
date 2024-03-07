@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 import Header from './components/Header';
@@ -7,17 +7,16 @@ import Footer from './components/Footer';
 
 import getPosts from './utils/getPosts';
 
-const getPostAsync = async () => {
-  return getPosts();
-};
-
 function App() {
   const [posts, setPosts] = useState([]);
 
-  useState(async () => 
-    setPosts(await getPostAsync())
-  , []);
-  
+  useEffect(() => {
+    const getPostsAsync = async () => {
+       setPosts(await getPosts());
+    };
+    getPostsAsync();
+  });
+
   return (
     <>
       <Header />

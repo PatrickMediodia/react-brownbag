@@ -1,10 +1,12 @@
 export default function Post({ postData }) {
-    const { title, body } = postData;
+    const { title, content, image, status, category, publishedAt } = postData;
 
     return (
-        <div>
-            <p>Title: {title}</p>
-            <p>Description: {body}</p>
+        <div className="post">
+            <p>{title}</p>
+            <hr/>
+            <p>{content}</p>
+            <img src={image} className="post-image" />
         </div>
     );
 }
