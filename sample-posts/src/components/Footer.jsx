@@ -1,7 +1,7 @@
 export default function Footer() {
     return (
         <footer>
-            Footer
+            Sample React Application © 2024
         </footer>
     );
 }

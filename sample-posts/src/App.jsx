@@ -9,18 +9,30 @@ import getPosts from './utils/getPosts';
 
 function App() {
   const [posts, setPosts] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const loginHandler = () => {
+    setIsLoggedIn(prevState => !prevState);
+  }
 
   useEffect(() => {
-    const getPostsAsync = async () => {
-       setPosts(await getPosts());
-    };
-    getPostsAsync();
-  });
+    if (isLoggedIn) {
+      const getPostsAsync = async () => {
+        setPosts(await getPosts());
+      };
+      getPostsAsync();
+    } else {
+      setPosts([]);
+    }
+  }, [isLoggedIn]);
 
   return (
     <>
-      <Header />
-      <Posts posts={posts}/>
+      <Header 
+        isLoggedIn={isLoggedIn} 
+        loginHandler={loginHandler}
+      />
+      { posts.length > 0 ? <Posts posts={posts}/> : <p>Please Login to View Posts</p> }
       <Footer />
     </>
   )

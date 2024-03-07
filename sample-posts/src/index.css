@@ -1,6 +1,55 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('roboto.eot'); /* IE9 Compat Modes */
+  src: url('roboto.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('roboto.woff') format('woff'), /* Modern Browsers */
+  url('roboto.ttf')  format('truetype'), /* Safari, Android, iOS */
+  url('roboto.svg#svgFontName') format('svg'); /* Legacy iOS */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* use the font */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+}
+
+header, footer {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+p {
+  padding: 0.75rem 0rem;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+ul * {
+  margin-left: 1rem;
+}
+
+li {
+  float: left;
+}
+
+.right-align {
+  float: right;
+  margin-right: 1rem;
+}
+
 .posts-container {
-  display:flex;
   flex-wrap: wrap;
+  display:flex;
   max-width: 80rem;
   margin: 1rem;
   padding: 0.5rem;
