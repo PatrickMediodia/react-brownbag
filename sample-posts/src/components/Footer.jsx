@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer>
+        <footer className="footer">
             Sample React Application © 2024
         </footer>
     );

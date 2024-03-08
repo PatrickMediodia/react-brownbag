@@ -6,6 +6,7 @@ import Posts from './components/Posts';
 import Footer from './components/Footer';
 
 import getPosts from './utils/getPosts';
+import Message from './components/Message';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -14,7 +15,7 @@ function App() {
   const loginHandler = () => {
     setIsLoggedIn(prevState => !prevState);
   }
-  
+
   useEffect(() => {
     if (isLoggedIn) {
       const getPostsAsync = async () => {
@@ -32,11 +33,13 @@ function App() {
         isLoggedIn={isLoggedIn} 
         loginHandler={loginHandler}
       />
-      { 
-        posts.length > 0 ? 
-          <Posts posts={posts}/> :
-          <p>Please Login to View Posts</p> 
-      }
+      <div className='content-body'>
+        { 
+          posts.length > 0 ? 
+            <Posts posts={posts}/> :
+            <Message message={'Please login to view posts'}/>
+        }
+      </div>
       <Footer />
     </>
   )
