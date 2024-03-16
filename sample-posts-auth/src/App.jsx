@@ -9,9 +9,36 @@ import SignUp from './components/SignUp';
 
 import getPosts from './utils/getPosts';
 
+/*
+TODO
+  - add first page to show in localStorage
+*/
+
+// const pages = {
+//   'posts' : ,
+//   'login' :,
+//   'signup' :,
+//   'confirmSignUp' : ,
+// };
+
 function App() {
+  const [ loginCredentials, setLoginCredetials] = useState({ 
+    email: '', 
+    password: ''
+  });
+
+  const handleChange = (e) => {
+      setLoginCredetials((prev) => {
+          return {
+              ...prev,
+              [e.target.name]: e.target.value,
+          }
+      });
+  }
+  
   const [posts, setPosts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  //const [pageToShow, setPageToShow] = useState('login');
 
   const loginHandler = () => {
     setIsLoggedIn(prevState => !prevState);

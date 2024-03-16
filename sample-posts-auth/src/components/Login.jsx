@@ -1,29 +1,28 @@
 import { useState } from "react";
 import authenticate from "../services/authenticate";
 
-export default function Login() {
-    const [ loginCredentials, setLoginCredetials] = useState({ 
-        email: '', 
-        password: ''
-    });
+/*
+TODO
+    - add handling of needing to confirm code
+    - add handling of error on incorrect credentials
+    - add handle of account not found
+*/
 
-    const handleChange = (e) => {
-        e.preventDefault();
-
-        setLoginCredetials((prev) => {
-            return {
-                ...prev,
-                [e.target.name]: e.target.value,
-            }
-        });
-    }
-    
+export default function Login({ loginCredentials, handleChange }) {
     const handleSubmit = async () => {
         try {
             const authDetails = await authenticate(loginCredentials);
-            console.log(authDetails);
+            console.log(`AuthDetails: ${authDetails}`);
         } catch(err) {
-            console.log('unable to authenticate');
+            const error = err.name;
+
+            if (error === 'UserNotConfirmedException') {
+                console.log('Please Confirm your ');
+            } else if (error === 'NotAuthorizedException') {
+                alert('Incorrect username or password.');
+            } else {
+                console.log(error);
+            }
         }
     }
 

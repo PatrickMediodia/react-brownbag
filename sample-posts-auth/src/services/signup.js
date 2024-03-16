@@ -19,7 +19,6 @@ export default function signup({ email, password }) {
                 reject(err);
             } else {
                 resolve(data)
-
             }
         }
       );

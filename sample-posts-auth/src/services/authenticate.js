@@ -12,7 +12,7 @@ export default function authenticate({ email, password }) {
           Username: email,
           Password: password
       });
-
+      
       user.authenticateUser(authDetails, {
           onSuccess: (result) => {
               console.log("login successful");

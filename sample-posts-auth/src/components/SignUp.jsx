@@ -1,6 +1,13 @@
 import { useState } from "react";
 import signup from "../services/signup";
 
+/*
+TODO
+    - add functionality for redirect on successful signup
+    - add functionality for validating sign up data
+    - add functionality for confirm password
+*/
+
 export default function SignUp() {
     const [ signupCredentials, setSignupCredetials] = useState({ 
         email: '', 
@@ -8,8 +15,6 @@ export default function SignUp() {
     });
 
     const handleChange = (e) => {
-        e.preventDefault();
-
         setSignupCredetials((prev) => {
             return {
                 ...prev,
