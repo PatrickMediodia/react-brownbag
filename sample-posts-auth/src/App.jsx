@@ -22,20 +22,20 @@ TODO
 // };
 
 function App() {
-  const [ loginCredentials, setLoginCredetials] = useState({ 
+  const [loginCredentials, setLoginCredetials] = useState({ 
     email: '', 
     password: ''
   });
-
-  const handleChange = (e) => {
-      setLoginCredetials((prev) => {
-          return {
-              ...prev,
-              [e.target.name]: e.target.value,
-          }
-      });
-  }
   
+  const handleChange = (e) => {
+    setLoginCredetials((prev) => {
+        return {
+            ...prev,
+            [e.target.name]: e.target.value,
+        }
+    });
+  }
+
   const [posts, setPosts] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   //const [pageToShow, setPageToShow] = useState('login');
