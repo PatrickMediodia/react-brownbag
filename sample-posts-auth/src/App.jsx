@@ -6,7 +6,7 @@ import Posts from './components/Posts';
 import Footer from './components/Footer';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-
+import ConfirmSignUp from './components/ConfirmSignUp';
 import getPosts from './utils/getPosts';
 
 /*
@@ -14,59 +14,39 @@ TODO
   - add first page to show in localStorage
 */
 
-// const pages = {
-//   'posts' : ,
-//   'login' :,
-//   'signup' :,
-//   'confirmSignUp' : ,
-// };
-
 function App() {
-  const [loginCredentials, setLoginCredetials] = useState({ 
-    email: '', 
-    password: ''
-  });
-  
-  const handleChange = (e) => {
-    setLoginCredetials((prev) => {
-        return {
-            ...prev,
-            [e.target.name]: e.target.value,
-        }
-    });
-  }
+  const [pageToShow, setPageToShow] = useState('login');
+  const [user, setUser] = useState(null);
 
-  const [posts, setPosts] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  //const [pageToShow, setPageToShow] = useState('login');
+  const pageToShowHandler = () => {
+    switch (pageToShow) {
+      case 'posts':
+        return <Posts posts={posts} />;
+      case 'login':
+        return <Login />
+      case 'signUp':
+        return <SignUp />
+      case 'confirmSignUp':
+        return <ConfirmSignUp username={loginCredentials.email} setPageToShow={setPageToShow}/>
+    }
+  }
 
   const loginHandler = () => {
-    setIsLoggedIn(prevState => !prevState);
-  }
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      const getPostsAsync = async () => {
-        setPosts(await getPosts());
-      };
-      getPostsAsync();
+    if (user) {
+      pageToShow('posts')
     } else {
-      setPosts([]);
+      pageToShow('login')
     }
-  }, [isLoggedIn]);
+  }
 
   return (
     <>
       <Header 
-        isLoggedIn={isLoggedIn} 
-        loginHandler={loginHandler}
+        user
+        loginHandler
       />
       <div className='content-body'>
-        { 
-          posts.length > 0 ? 
-            <Posts posts={posts}/> :
-            <Login />
-        }
+        { pageToShowHandler() }
       </div>
       <Footer />
     </>

@@ -1,8 +1,8 @@
-export default function Header({ isLoggedIn, loginHandler }) {
+export default function Header({ user, loginHandler }) {
     return (
         <header>
              <ul>
-                { isLoggedIn &&
+                { user &&
                     <>
                         <li>Home</li>
                         <li>Posts</li>
@@ -11,7 +11,7 @@ export default function Header({ isLoggedIn, loginHandler }) {
                 }
                 <li className="right-align">
                     <a onClick={loginHandler}>
-                        {isLoggedIn ? 'Logout' : 'Login'}
+                        {user ? 'Logout' : 'Login'}
                     </a>
                 </li>
             </ul> 

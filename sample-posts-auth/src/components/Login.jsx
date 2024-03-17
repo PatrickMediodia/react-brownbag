@@ -8,16 +8,29 @@ TODO
     - add handle of account not found
 */
 
-export default function Login({ loginCredentials, handleChange }) {
+export default function Login() {
+    const [loginCredentials, setLoginCredetials] = useState({ 
+        email: '', 
+        password: ''
+    });
+
+    const handleChange = (e) => {
+        setLoginCredetials((prev) => {
+            return {
+                ...prev,
+                [e.target.name]: e.target.value,
+            }
+        });
+    }
+
     const handleSubmit = async () => {
         try {
             const authDetails = await authenticate(loginCredentials);
             console.log(`AuthDetails: ${authDetails}`);
         } catch(err) {
             const error = err.name;
-
             if (error === 'UserNotConfirmedException') {
-                console.log('Please Confirm your ');
+                console.log('Please Confirm your email');
             } else if (error === 'NotAuthorizedException') {
                 alert('Incorrect username or password.');
             } else {

@@ -2,9 +2,8 @@ import confirmSignup from "../services/confirmSignup";
 
 export default function ConfirmSignUp({ username }) {
     const [confirmationCode, setConfirmationCode] = useState('');
-
+    
     const handleChange = (e) => {
-        e.preventDefault();
         setConfirmationCode(e.target.value);
     }
 
