@@ -30,7 +30,7 @@ function App() {
         return <ConfirmSignUp username={loginCredentials.email} setPageToShow={setPageToShow}/>
     }
   }
-
+  
   const loginHandler = () => {
     if (user) {
       pageToShow('posts')
