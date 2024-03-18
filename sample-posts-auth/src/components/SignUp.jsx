@@ -11,7 +11,8 @@ TODO
 export default function SignUp() {
     const [ signupCredentials, setSignupCredetials] = useState({ 
         email: '', 
-        password: ''
+        password: '',
+        confirmPassword: ''
     });
 
     const handleChange = (e) => {
@@ -23,7 +24,8 @@ export default function SignUp() {
         });
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const signupDetails = await signup(signupCredentials);
             console.log(signupDetails);
@@ -33,39 +35,47 @@ export default function SignUp() {
     }
 
     return (
-        <div className="login-form">
-            Signup Form
-            <hr/>
-            Email
-            <input
-                className="login-input"
-                name='email'
-                type='text'
-                value={signupCredentials.email}
-
-                onChange={handleChange}
-            />
-            Password
-            <input
-                className="login-input"
-                name='password'
-                type='password'
-                value={signupCredentials.password}
-                onChange={handleChange}
-            />
-            Confirm Password
-            <input
-                className="login-input"
-                name='password'
-                type='password'
-                value={signupCredentials.password}
-                onChange={handleChange}
-            />
+        <form className="form" onSubmit={handleSubmit}>
+            <h1 className="form-header">Sign Up</h1>
+            <div className="form-field">
+                Email: 
+                <input
+                    className="form-input"
+                    name='email'
+                    type='text'
+                    value={signupCredentials.email}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-field">
+                Password:
+                <input
+                    className="form-input"
+                    name='password'
+                    type='password'
+                    value={signupCredentials.password}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-field">
+                Confirm Password:
+                <input
+                    className="form-input"
+                    name='password'
+                    type='password'
+                    value={signupCredentials.confirmPassword}
+                    onChange={handleChange}
+                />
+            </div>
             <input 
                 type="submit"
-                className="login-button"
-                onClick={handleSubmit}
+                className="form-button"
+                value="Submit"
             />
-        </div>
+            <div className="form-link">
+                Already have an account?
+                <a href="" className="form-link">Login</a>
+            </div>
+        </form>
     );
 }

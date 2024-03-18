@@ -74,22 +74,43 @@ li {
   font-size: 24px;
 }
 
-.login-form {
+.form {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  max-width: 80rem;
+  width: 25rem;
   margin: auto;
-  padding: 0.5rem;
+  padding: 2rem;
   border-radius: 6px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  gap: 20px;
 }
 
-.login-input {
-  min-width: 25rem;
-  padding: 0.30rem 2rem;
+.form-header {
+  text-align: center;
+  margin: 10px 10px;
 }
 
-.login-button {
-  padding: 0.30rem 2rem;
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-input {
+  padding: 0.5rem 0.5rem;
+  font-size: 16px;
+}
+
+.form-button {
+  margin-top: 20px;
+  padding: 0.50rem 2rem;
+  color: black;
+  font-size: 16px;
+}
+
+.form-link {
+  text-decoration: none;
+  text-align: center;
+  margin: 10px 5px;
 }

@@ -15,6 +15,7 @@ export default function Login() {
     });
 
     const handleChange = (e) => {
+        
         setLoginCredetials((prev) => {
             return {
                 ...prev,
@@ -23,48 +24,55 @@ export default function Login() {
         });
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const authDetails = await authenticate(loginCredentials);
-            console.log(`AuthDetails: ${authDetails}`);
+            alert(`AuthDetails: ${authDetails}`);
         } catch(err) {
             const error = err.name;
             if (error === 'UserNotConfirmedException') {
-                console.log('Please Confirm your email');
+                alert('Please Confirm your email');
             } else if (error === 'NotAuthorizedException') {
                 alert('Incorrect username or password.');
             } else {
-                console.log(error);
+                alert(error);
             }
         }
     }
 
     return (
-        <div className="login-form">
-            Login Form
-            <hr/>
-            Email
-            <input
-                className="login-input"
-                name='email'
-                type='text'
-                value={loginCredentials.email}
-
-                onChange={handleChange}
-            />
-            Password
-            <input
-                className="login-input"
-                name='password'
-                type='password'
-                value={loginCredentials.password}
-                onChange={handleChange}
-            />
+        <form className="form" onSubmit={handleSubmit}>
+            <h1 className="form-header">Login</h1>
+            <div className="form-field">
+                Email
+                <input
+                    className="form-input"
+                    name='email'
+                    type='text'
+                    value={loginCredentials.email}
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-field">
+                Password
+                <input
+                    className="form-input"
+                    name='password'
+                    type='password'
+                    value={loginCredentials.password}
+                    onChange={handleChange}
+                />
+            </div>
             <input 
                 type="submit"
-                className="login-button"
-                onClick={handleSubmit}
+                className="form-button"
+                value="Submit"
             />
-        </div>
+            <div className="form-link">
+                Don't have an account?
+                <a href="" className="form-link">Sign Up</a>
+            </div>
+        </form>
     );
 }

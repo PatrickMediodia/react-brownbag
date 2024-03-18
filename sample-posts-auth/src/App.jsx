@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 import Header from './components/Header';
@@ -7,11 +7,11 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import ConfirmSignUp from './components/ConfirmSignUp';
-import getPosts from './utils/getPosts';
 
 /*
 TODO
   - add first page to show in localStorage
+  - store logged in user in localStorage
 */
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
         return <Posts posts={posts} />;
       case 'login':
         return <Login />
-      case 'signUp':
+      case 'signup':
         return <SignUp />
       case 'confirmSignUp':
         return <ConfirmSignUp username={loginCredentials.email} setPageToShow={setPageToShow}/>
