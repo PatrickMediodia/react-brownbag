@@ -1,4 +1,4 @@
-export default function Header({ user, loginHandler }) {
+export default function Header({ user }) {
     return (
         <header>
              <ul>
@@ -10,7 +10,7 @@ export default function Header({ user, loginHandler }) {
                     </>
                 }
                 <li className="right-align">
-                    <a onClick={loginHandler}>
+                    <a onClick={()=>{}}>
                         {user ? 'Logout' : 'Login'}
                     </a>
                 </li>

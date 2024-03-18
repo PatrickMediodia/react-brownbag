@@ -1,5 +1,7 @@
-import { useState } from 'react';
 import './App.css';
+
+import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 import Header from './components/Header';
 import Posts from './components/Posts';
@@ -7,6 +9,7 @@ import Footer from './components/Footer';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import ConfirmSignUp from './components/ConfirmSignUp';
+import Message from './components/Message';
 
 /*
 TODO
@@ -15,42 +18,53 @@ TODO
 */
 
 function App() {
-  const [pageToShow, setPageToShow] = useState('signup');
+  const [pageToShow, setPageToShow] = useState('login');
   const [user, setUser] = useState(null);
 
-  const pageToShowHandler = () => {
-    switch (pageToShow) {
-      case 'posts':
-        return <Posts posts={posts} />;
-      case 'login':
-        return <Login />
-      case 'signup':
-        return <SignUp />
-      case 'confirmSignUp':
-        return <ConfirmSignUp username={'patrick.mediodia@phitopolis.com'} setPageToShow={setPageToShow}/>
-    }
-  }
-  
-  const loginHandler = () => {
-    if (user) {
-      pageToShow('posts')
-    } else {
-      pageToShow('login')
-    }
-  }
+  // const pageToShowHandler = () => {
+  //   switch (pageToShow) {
+  //     case 'posts':
+  //       return <Posts posts={posts} />;
+  //     case 'login':
+  //       return <Login />
+  //     case 'signup':
+  //       return <SignUp />
+  //     case 'confirmSignUp':
+  //       return <ConfirmSignUp username={'patrick.mediodia@phitopolis.com'} setPageToShow={setPageToShow}/>
+  //   }
+  // }
 
+  // const loginHandler = () => {
+  //   if (user) {
+  //     pageToShow('posts')
+  //   } else {
+  //     pageToShow('login')
+  //   }
+  // }
+  
   return (
-    <>
+    <BrowserRouter>
       <Header 
         user
-        loginHandler
       />
       <div className='content-body'>
-        { pageToShowHandler() }
+        <Routes>
+          <Route path="/" element={user === null ? <Login /> : <Posts />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/confirmSignUp" element={<ConfirmSignUp />} />
+          <Route path="*" element={<Message message={'Not a valid route'} />} />
+          </Route>
+        </Routes>
       </div>
       <Footer />
-    </>
+    </BrowserRouter>
   )
 }
 
 export default App
+
+
+{/* <div className='content-body'>
+{ pageToShowHandler() }
+</div> */}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import signup from "../services/signup";
+import { Outlet, Link, useNavigate } from "react-router-dom";
 
 /*
 TODO
@@ -9,6 +10,8 @@ TODO
 */
 
 export default function SignUp() {
+    const navigate = useNavigate();
+
     const [ signupCredentials, setSignupCredetials] = useState({ 
         email: '', 
         password: '',
@@ -30,7 +33,18 @@ export default function SignUp() {
             const signupDetails = await signup(signupCredentials);
             console.log(signupDetails);
         } catch(err) {
+            const error = err.name;
+            if (error === 'InvalidParameterException') {
+                alert('Please Confirm your email');
+            } else if (error === 'InvalidPasswordException') {
+                alert('Incorrect username or password.');
+            } else if (error === 'UsernameExistsException') {
+                navigate('/confirmSignUp');
+            } else {
+                alert(error);
+            }
             console.log('unable to signup');
+            console.log(err);
         }
     }
 
