@@ -35,9 +35,10 @@ export default function Login() {
             const error = err.name;
             if (error === 'UserNotConfirmedException') {
                 alert('Please Confirm your email');
+                alert(loginCredentials.email);
                 navigate('/confirmSignUp', {
                     state: {
-                        username: loginCredentials.username,
+                        username: loginCredentials.email,
                     }
                 });
             } else if (error === 'NotAuthorizedException') {

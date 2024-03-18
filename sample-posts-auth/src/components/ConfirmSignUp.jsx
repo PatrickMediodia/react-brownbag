@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import confirmSignup from "../services/confirmSignup";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -8,9 +8,12 @@ export default function ConfirmSignUp() {
 
     const [confirmationCode, setConfirmationCode] = useState('');
 
-    if (location.state.username === undefined) {
-        navigate('login');
-    }
+    useEffect(()=> {
+        if (!location.state.username) {
+            alert('I am undefined lol');
+            navigate('/login');
+        }
+    }, []);
 
     const handleChange = (e) => {
         setConfirmationCode(e.target.value);
@@ -35,7 +38,7 @@ export default function ConfirmSignUp() {
         <form className='form' onSubmit={handleSubmit}>
             <h1 className="form-header">Confirm Sign Up</h1>
             <div className='form-details'>
-                Enter confirmation code sent to <br/> {username}
+                Enter confirmation code sent to <br/> {location.state.username}
             </div>
             <div className='form-field'>
                 <input
