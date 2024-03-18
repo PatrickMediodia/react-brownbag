@@ -9,8 +9,7 @@ export default function ConfirmSignUp() {
     const [confirmationCode, setConfirmationCode] = useState('');
 
     useEffect(()=> {
-        if (!location.state.username) {
-            alert('I am undefined lol');
+        if (location.state.username === null) {
             navigate('/login');
         }
     }, []);
@@ -31,6 +30,7 @@ export default function ConfirmSignUp() {
             console.log(response);
         } catch(err) {
             console.log('unable to signup');
+            console.log(err)
         }
     }
 
@@ -52,7 +52,7 @@ export default function ConfirmSignUp() {
             <input 
                 type="submit"
                 className="form-button"
-                onClick={handleSubmit}
+                value="Submit"
             />
         </form>
     );

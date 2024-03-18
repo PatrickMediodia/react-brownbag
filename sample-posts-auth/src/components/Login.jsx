@@ -34,12 +34,8 @@ export default function Login() {
         } catch(err) {
             const error = err.name;
             if (error === 'UserNotConfirmedException') {
-                alert('Please Confirm your email');
-                alert(loginCredentials.email);
                 navigate('/confirmSignUp', {
-                    state: {
-                        username: loginCredentials.email,
-                    }
+                    state: { username: loginCredentials.email }
                 });
             } else if (error === 'NotAuthorizedException') {
                 alert('Incorrect username or password.');
@@ -48,7 +44,7 @@ export default function Login() {
             }
         }
     }
-
+    
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className="form-header">Login</h1>

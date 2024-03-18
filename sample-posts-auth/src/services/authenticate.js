@@ -8,7 +8,7 @@ export default function authenticate({ email, password }) {
           Pool: userpool
       });
 
-      const authDetails= new AuthenticationDetails({
+      const authDetails = new AuthenticationDetails({
           Username: email,
           Password: password
       });

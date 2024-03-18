@@ -1,15 +1,22 @@
 import userpool from './userpool';
 
-export default function confirmSignup({ username, confirmationCode }) {
+export default function confirmSignUp({ username, confirmationCode }) {
   return new Promise((resolve, reject) => {
     try {
-        const signUpEvent = userpool.ConfirmSignUp({
-            Username: username,
-            ClientId: import.meta.env.VITE_APP_CLIENT_ID,
-            confirmationCode: confirmationCode,
-        });
+        const signUpEvent = userpool.confirmRegistration(
+          confirmationCode,
+          true,
+          (err, res) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(res);
+            }
+          }
+        );
         resolve(signUpEvent);
     } catch (err) {
+        console.log(err);
         reject(err);
     }
   });
