@@ -1,15 +1,25 @@
 import { useState } from 'react';
 import confirmSignup from "../services/confirmSignup";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function ConfirmSignUp({ username }) {
+export default function ConfirmSignUp() {
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const [confirmationCode, setConfirmationCode] = useState('');
-    
+
+    if (location.state.username === undefined) {
+        navigate('/login');
+    }
+
     const handleChange = (e) => {
         setConfirmationCode(e.target.value);
     }
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const username = location.state.username;
+
         try {
             const response = await confirmSignup({
                 username,
@@ -20,7 +30,7 @@ export default function ConfirmSignUp({ username }) {
             console.log('unable to signup');
         }
     }
-    
+
     return (
         <form className='form' onSubmit={handleSubmit}>
             <h1 className="form-header">Confirm Sign Up</h1>

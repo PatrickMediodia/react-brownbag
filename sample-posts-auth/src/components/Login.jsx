@@ -11,7 +11,7 @@ TODO
 
 export default function Login() {
     const navigate = useNavigate();
-    
+
     const [loginCredentials, setLoginCredetials] = useState({ 
         email: '', 
         password: ''
@@ -35,6 +35,11 @@ export default function Login() {
             const error = err.name;
             if (error === 'UserNotConfirmedException') {
                 alert('Please Confirm your email');
+                navigate('/confirmSignUp', {
+                    state: {
+                        username: loginCredentials.username,
+                    }
+                });
             } else if (error === 'NotAuthorizedException') {
                 alert('Incorrect username or password.');
             } else {
