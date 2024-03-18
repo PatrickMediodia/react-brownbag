@@ -54,7 +54,7 @@ function App() {
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="confirmSignUp" element={<ConfirmSignUp />} />
-            <Route path="*" element={<Message message={'Not a valid route'} />} />
+            <Route path="*" element={<Message message={'Route 404. Not a valid route.'} />} />
           </Route>
         </Routes>
       </div>

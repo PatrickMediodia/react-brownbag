@@ -1,3 +1,5 @@
+import { Link, useNavigate } from "react-router-dom";
+
 export default function Header({ user }) {
     return (
         <header>
@@ -10,9 +12,12 @@ export default function Header({ user }) {
                     </>
                 }
                 <li className="right-align">
-                    <a onClick={()=>{}}>
+                    <Link 
+                        to={user ? '/' : '/login'} 
+                        className="form-link"
+                    >
                         {user ? 'Logout' : 'Login'}
-                    </a>
+                    </Link>
                 </li>
             </ul> 
         </header>

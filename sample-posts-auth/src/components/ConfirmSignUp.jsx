@@ -9,7 +9,7 @@ export default function ConfirmSignUp() {
     const [confirmationCode, setConfirmationCode] = useState('');
 
     if (location.state.username === undefined) {
-        navigate('/login');
+        navigate('login');
     }
 
     const handleChange = (e) => {
