@@ -1,7 +1,7 @@
 import './App.css';
 
 import { useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 
 import Header from './components/Header';
 import Posts from './components/Posts';
@@ -18,6 +18,8 @@ TODO
 */
 
 function App() {
+  const navigate = useNavigate();
+
   const [pageToShow, setPageToShow] = useState('login');
   const [user, setUser] = useState(null);
 
@@ -41,24 +43,23 @@ function App() {
   //     pageToShow('login')
   //   }
   // }
-  
+
   return (
-    <BrowserRouter>
-      <Header 
-        user
-      />
+    <>
+      <Header user={user}/>
       <div className='content-body'>
         <Routes>
-          <Route path="/" element={user === null ? <Login /> : <Posts />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/confirmSignUp" element={<ConfirmSignUp />} />
-          <Route path="*" element={<Message message={'Not a valid route'} />} />
+          <Route path="/">
+            <Route index element={ user === null ? <Login /> : <Posts />} />
+            <Route path="login" element={<Login />} />
+            <Route path="signup" element={<SignUp />} />
+            <Route path="confirmSignUp" element={<ConfirmSignUp />} />
+            <Route path="*" element={<Message message={'Not a valid route'} />} />
           </Route>
         </Routes>
       </div>
       <Footer />
-    </BrowserRouter>
+    </>
   )
 }
 

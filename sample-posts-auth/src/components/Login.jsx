@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import authenticate from "../services/authenticate";
 
 /*
@@ -9,6 +10,8 @@ TODO
 */
 
 export default function Login() {
+    const navigate = useNavigate();
+    
     const [loginCredentials, setLoginCredetials] = useState({ 
         email: '', 
         password: ''
@@ -70,7 +73,7 @@ export default function Login() {
             />
             <div className="form-link">
                 Don't have an account?
-                <a href="" className="form-link">Sign Up</a>
+                <Link to='/signup' className="form-link">Sign Up</Link>
             </div>
         </form>
     );

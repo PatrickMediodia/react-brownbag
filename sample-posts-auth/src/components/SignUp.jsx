@@ -1,6 +1,6 @@
 import { useState } from "react";
 import signup from "../services/signup";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 /*
 TODO
@@ -88,7 +88,7 @@ export default function SignUp() {
             />
             <div className="form-link">
                 Already have an account?
-                <a href="" className="form-link">Login</a>
+                <Link to='/login' className="form-link">Login</Link>
             </div>
         </form>
     );
