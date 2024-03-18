@@ -15,7 +15,7 @@ TODO
 */
 
 function App() {
-  const [pageToShow, setPageToShow] = useState('login');
+  const [pageToShow, setPageToShow] = useState('signup');
   const [user, setUser] = useState(null);
 
   const pageToShowHandler = () => {
@@ -27,7 +27,7 @@ function App() {
       case 'signup':
         return <SignUp />
       case 'confirmSignUp':
-        return <ConfirmSignUp username={loginCredentials.email} setPageToShow={setPageToShow}/>
+        return <ConfirmSignUp username={'patrick.mediodia@phitopolis.com'} setPageToShow={setPageToShow}/>
     }
   }
   

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import confirmSignup from "../services/confirmSignup";
 
 export default function ConfirmSignUp({ username }) {
@@ -7,7 +8,8 @@ export default function ConfirmSignUp({ username }) {
         setConfirmationCode(e.target.value);
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
             const response = await confirmSignup({
                 username,
@@ -20,20 +22,25 @@ export default function ConfirmSignUp({ username }) {
     }
     
     return (
-        <div className="message-container">
-            Enter Confirmation Code Sent to Email
-            <input
-                className="login-input"
-                name='email'
-                type='text'
-                value={loginCredentials.email}
-                onChange={handleChange}
-            />
+        <form className='form' onSubmit={handleSubmit}>
+            <h1 className="form-header">Confirm Sign Up</h1>
+            <div className='form-details'>
+                Enter confirmation code sent to <br/> {username}
+            </div>
+            <div className='form-field'>
+                <input
+                    className="form-input"
+                    name='email'
+                    type='text'
+                    value={confirmationCode}
+                    onChange={handleChange}
+                />
+            </div>
             <input 
                 type="submit"
-                className="login-button"
+                className="form-button"
                 onClick={handleSubmit}
             />
-        </div>
+        </form>
     );
 }
