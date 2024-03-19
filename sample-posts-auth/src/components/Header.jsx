@@ -18,6 +18,13 @@ export default function Header({ user, setUser }) {
                     </>
                 }
                 <li className="right-align">
+                    { user ? <Link 
+                        to='/changepassword' 
+                        className="form-link"
+                    >
+                        Change Password
+                    </Link> : undefined
+                    }
                     <Link 
                         to={user ? '/' : '/login'} 
                         className="form-link"

@@ -10,6 +10,7 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import ConfirmSignUp from './components/ConfirmSignUp';
 import Message from './components/Message';
+import ChangePassword from './components/ChangePassword';
 
 /*
 TODO
@@ -31,6 +32,7 @@ function App() {
             <Route path="login" element={<Login setUser={setUser} />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="confirmsignup" element={<ConfirmSignUp />} />
+            <Route path="changepassword" element={<ChangePassword user={user}/>} />
             <Route path="*" element={<Message message={'Route 404. Not a valid route.'} />} />
           </Route>
         </Routes>
