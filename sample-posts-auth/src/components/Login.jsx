@@ -32,6 +32,10 @@ export default function Login({ setUser }) {
                 navigate('/confirmsignup', {
                     state: { username: loginCredentials.email }
                 });
+                break;
+            case 'InvalidParameterException':
+                alert('Please enter a valid username and password');
+                break;
             case 'NotAuthorizedException':
                 alert('Incorrect username or password.');
                 break;

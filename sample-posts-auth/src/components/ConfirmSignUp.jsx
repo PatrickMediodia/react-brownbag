@@ -19,6 +19,17 @@ export default function ConfirmSignUp() {
         setConfirmationCode(e.target.value);
     }
 
+    const handleException = (err) => {
+        switch(err) {
+            case 'CodeMismatchException':
+                alert('Invalid verification code provided, please try again.');
+                break;
+            default:
+                alert(err);
+                break;
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -28,15 +39,15 @@ export default function ConfirmSignUp() {
             );
             navigate('/login');
         } catch(err) {
-            console.log(err)
+            handleException(err.name);
         }
     }
-
+    
     const handleResend = async (e) => {
         e.preventDefault();
         try {
             await resendConfirmSignUp(location.state.username);
-            navigate('/login');
+            alert('New confirmation code sent to your email.');
         } catch(err) {
             alert(err);
         }
