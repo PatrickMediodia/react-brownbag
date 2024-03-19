@@ -1,6 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
+import logout from "../services/logout";
 
-export default function Header({ user }) {
+export default function Header({ user, setUser }) {
+    const logoutHandler = () => {
+        logout();
+        setUser(null);
+    };
+    
     return (
         <header>
              <ul>
@@ -15,6 +21,7 @@ export default function Header({ user }) {
                     <Link 
                         to={user ? '/' : '/login'} 
                         className="form-link"
+                        onClick={logoutHandler}
                     >
                         {user ? 'Logout' : 'Login'}
                     </Link>

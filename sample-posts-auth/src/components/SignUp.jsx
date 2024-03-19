@@ -26,25 +26,33 @@ export default function SignUp() {
             }
         });
     }
+
+    const handleException = (err) => {
+        switch(err) {
+            case 'InvalidParameterException':
+                alert('Please Confirm your email');
+                break;
+            case 'InvalidPasswordException':
+                alert('Invalid Password Used.');
+                break;
+            case 'UsernameExistsException':
+                alert('User with that email already exists. Please login.');
+                break;
+            default:
+                alert(err);
+                break;
+        }
+    }
     
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const signupDetails = await signup(signupCredentials);
-            console.log(signupDetails);
+            await signup(signupCredentials);
+            navigate('/confirmsignup', {
+                state: { username: signupCredentials.email }
+            });
         } catch(err) {
-            const error = err.name;
-            if (error === 'InvalidParameterException') {
-                alert('Please Confirm your email');
-            } else if (error === 'InvalidPasswordException') {
-                alert('Invalid Password Used.');
-            } else if (error === 'UsernameExistsException') {
-                alert('User with that email already exists. Please login.');
-            } else {
-                alert(error);
-            }
-            console.log('unable to signup');
-            console.log(err);
+            handleException(err.name);
         }
     }
 
@@ -87,7 +95,7 @@ export default function SignUp() {
                 value="Submit"
             />
             <div className="form-link">
-                Already have an account?
+                Already have an account?&nbsp;
                 <Link to='/login' className="form-link">Login</Link>
             </div>
         </form>

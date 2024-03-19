@@ -1,7 +1,7 @@
 import userpool from './userpool';
 
-export default logout = async () => {
+export default async function logout() {
     const user = await userpool.getCurrentUser();
     user.signOut();
-    console.log("user signed out",err);
+    alert('User has been signed out');
 };

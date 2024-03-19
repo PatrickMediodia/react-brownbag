@@ -23,12 +23,12 @@ function App() {
   
   return (
     <>
-      <Header user={user}/>
+      <Header user={user} setUser={setUser}/>
       <div className='content-body'>
         <Routes>
           <Route path="/">
-            <Route index element={ user === null ? <Login /> : <Posts />} />
-            <Route path="login" element={<Login />} />
+            <Route index element={ user === null ? <Login setUser={setUser} /> : <Posts />} />
+            <Route path="login" element={<Login setUser={setUser} />} />
             <Route path="signup" element={<SignUp />} />
             <Route path="confirmsignup" element={<ConfirmSignUp />} />
             <Route path="*" element={<Message message={'Route 404. Not a valid route.'} />} />

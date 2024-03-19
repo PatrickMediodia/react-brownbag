@@ -9,9 +9,9 @@ TODO
     - add handle of account not found
 */
 
-export default function Login() {
+export default function Login({ setUser }) {
     const navigate = useNavigate();
-
+    
     const [loginCredentials, setLoginCredetials] = useState({ 
         email: '', 
         password: ''
@@ -25,23 +25,29 @@ export default function Login() {
             }
         });
     }
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             const authDetails = await authenticate(loginCredentials);
-            alert(`AuthDetails: ${authDetails}`);
+            setUser(authDetails);
+            navigate('/');
         } catch(err) {
-            const error = err.name;
-            if (error === 'UserNotConfirmedException') {
+            handleException(err.name);
+        }
+    }
+
+    const handleException = (err) => {
+        switch(err) {
+            case 'UserNotConfirmedException':
                 navigate('/confirmsignup', {
                     state: { username: loginCredentials.email }
                 });
-            } else if (error === 'NotAuthorizedException') {
+            case 'NotAuthorizedException':
                 alert('Incorrect username or password.');
-            } else {
-                alert(error);
-            }
+                break;
+            default:
+                alert(err);
         }
     }
 
@@ -74,7 +80,7 @@ export default function Login() {
                 value="Submit"
             />
             <div className="form-link">
-                Don't have an account?
+                Don't have an account?&nbsp;
                 <Link to='/signup' className="form-link">Sign Up</Link>
             </div>
         </form>

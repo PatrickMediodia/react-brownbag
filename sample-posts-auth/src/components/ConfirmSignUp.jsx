@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import confirmSignup from "../services/confirmSignup";
+import resendConfirmSignUp from '../services/resendConfirmSignup';
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function ConfirmSignUp() {
@@ -17,23 +18,30 @@ export default function ConfirmSignUp() {
     const handleChange = (e) => {
         setConfirmationCode(e.target.value);
     }
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const username = location.state.username;
-        
         try {
-            const response = await confirmSignup({
-                username,
-                confirmationCode,
-            });
-            console.log(response);
+            await confirmSignup(
+                location.state.username,
+                confirmationCode
+            );
+            navigate('/login');
         } catch(err) {
-            console.log('unable to signup');
             console.log(err)
         }
     }
 
+    const handleResend = async (e) => {
+        e.preventDefault();
+        try {
+            await resendConfirmSignUp(location.state.username);
+            navigate('/login');
+        } catch(err) {
+            alert(err);
+        }
+    }
+    
     return (
         <form className='form' onSubmit={handleSubmit}>
             <h1 className="form-header">Confirm Sign Up</h1>
@@ -49,6 +57,7 @@ export default function ConfirmSignUp() {
                     onChange={handleChange}
                 />
             </div>
+            <a onClick={handleResend} className='form-link'>Resend Code</a>
             <input 
                 type="submit"
                 className="form-button"
