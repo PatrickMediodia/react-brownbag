@@ -5,7 +5,7 @@ const poolData = {
   ClientId: import.meta.env.VITE_APP_CLIENT_ID,
 };
 
-const userPoolData = await new CognitoUserPool(poolData)
+const userPoolData = new CognitoUserPool(poolData)
 console.log(userPoolData);
 
 export default userPoolData;
