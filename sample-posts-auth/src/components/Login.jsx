@@ -25,17 +25,6 @@ export default function Login({ setUser }) {
             }
         });
     }
-    
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const authDetails = await authenticate(loginCredentials);
-            setUser(authDetails);
-            navigate('/');
-        } catch(err) {
-            handleException(err.name);
-        }
-    }
 
     const handleException = (err) => {
         switch(err) {
@@ -48,6 +37,17 @@ export default function Login({ setUser }) {
                 break;
             default:
                 alert(err);
+        }
+    }
+    
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const authDetails = await authenticate(loginCredentials);
+            setUser(authDetails);
+            navigate('/');
+        } catch(err) {
+            handleException(err.name);
         }
     }
 

@@ -6,7 +6,7 @@ export default function Header({ user, setUser }) {
         logout();
         setUser(null);
     };
-    
+
     return (
         <header>
              <ul>
@@ -21,7 +21,7 @@ export default function Header({ user, setUser }) {
                     <Link 
                         to={user ? '/' : '/login'} 
                         className="form-link"
-                        onClick={logoutHandler}
+                        onClick={user ? logoutHandler : undefined}
                     >
                         {user ? 'Logout' : 'Login'}
                     </Link>

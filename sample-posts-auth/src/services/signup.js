@@ -7,7 +7,7 @@ export default function signup({ email, password }) {
         Value: email,
     });
     const attributeList = [atrribute];
-
+    
     return new Promise((resolve, reject) => {
         userpool.signUp(
             email,
