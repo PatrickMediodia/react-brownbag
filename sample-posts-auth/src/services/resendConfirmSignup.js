@@ -6,16 +6,14 @@ export default function resendConfirmSignUp(username) {
     Username: username,
     Pool: userpool
   });
-  
+
   return new Promise((resolve, reject) => {
     try {
       user.resendConfirmationCode(
         (err, res) => {
           if (err) {
-            console.log('rip');
             reject(err);
           } else {
-            console.log('all goodl ol');
             resolve(res);
           }
       });
