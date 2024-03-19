@@ -21,7 +21,7 @@ export default function ConfirmSignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const username = location.state.username;
-
+        
         try {
             const response = await confirmSignup({
                 username,

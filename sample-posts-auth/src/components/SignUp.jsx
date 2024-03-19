@@ -26,7 +26,7 @@ export default function SignUp() {
             }
         });
     }
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -37,9 +37,9 @@ export default function SignUp() {
             if (error === 'InvalidParameterException') {
                 alert('Please Confirm your email');
             } else if (error === 'InvalidPasswordException') {
-                alert('Incorrect username or password.');
+                alert('Invalid Password Used.');
             } else if (error === 'UsernameExistsException') {
-                navigate('/confirmSignUp');
+                alert('User with that email already exists. Please login.');
             } else {
                 alert(error);
             }
@@ -75,7 +75,7 @@ export default function SignUp() {
                 Confirm Password:
                 <input
                     className="form-input"
-                    name='password'
+                    name='confirmPassword'
                     type='password'
                     value={signupCredentials.confirmPassword}
                     onChange={handleChange}

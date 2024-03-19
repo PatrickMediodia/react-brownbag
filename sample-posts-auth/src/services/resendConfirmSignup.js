@@ -1,17 +1,15 @@
 import { CognitoUser } from 'amazon-cognito-identity-js';
 import userpool from './userpool';
 
-export default function confirmSignUp({ username, confirmationCode }) {
-  return new Promise(async (resolve, reject) => {
+export default function resendConfirmSignUp({ username, confirmationCode }) {
+  return new Promise((resolve, reject) => {
     try {
       const user = new CognitoUser({
         Username: username,
         Pool: userpool
       });
-      
-      console.log(user);
 
-      const confirmSignUpEvent = user.confirmRegistration(
+      const confirmSignUpEvent = user.resendSignUp(
         confirmationCode,
         true,
         (err, res) => {
@@ -22,7 +20,7 @@ export default function confirmSignUp({ username, confirmationCode }) {
           }
         }
       );
-
+      
       resolve(confirmSignUpEvent);
     } catch (err) {
         console.log(err);

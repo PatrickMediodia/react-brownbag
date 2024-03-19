@@ -15,35 +15,12 @@ import Message from './components/Message';
 TODO
   - add first page to show in localStorage
   - store logged in user in localStorage
+  - change password
 */
 
 function App() {
-  const navigate = useNavigate();
-
-  const [pageToShow, setPageToShow] = useState('login');
   const [user, setUser] = useState(null);
-
-  // const pageToShowHandler = () => {
-  //   switch (pageToShow) {
-  //     case 'posts':
-  //       return <Posts posts={posts} />;
-  //     case 'login':
-  //       return <Login />
-  //     case 'signup':
-  //       return <SignUp />
-  //     case 'confirmSignUp':
-  //       return <ConfirmSignUp username={'patrick.mediodia@phitopolis.com'} setPageToShow={setPageToShow}/>
-  //   }
-  // }
-
-  // const loginHandler = () => {
-  //   if (user) {
-  //     pageToShow('posts')
-  //   } else {
-  //     pageToShow('login')
-  //   }
-  // }
-
+  
   return (
     <>
       <Header user={user}/>
@@ -53,7 +30,7 @@ function App() {
             <Route index element={ user === null ? <Login /> : <Posts />} />
             <Route path="login" element={<Login />} />
             <Route path="signup" element={<SignUp />} />
-            <Route path="confirmSignUp" element={<ConfirmSignUp />} />
+            <Route path="confirmsignup" element={<ConfirmSignUp />} />
             <Route path="*" element={<Message message={'Route 404. Not a valid route.'} />} />
           </Route>
         </Routes>
@@ -64,8 +41,3 @@ function App() {
 }
 
 export default App
-
-
-{/* <div className='content-body'>
-{ pageToShowHandler() }
-</div> */}
