@@ -25,7 +25,7 @@ export default function Login({ setUser }) {
             }
         });
     }
-
+    
     const handleException = (err) => {
         switch(err) {
             case 'UserNotConfirmedException':
@@ -39,7 +39,7 @@ export default function Login({ setUser }) {
                 alert(err);
         }
     }
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -62,6 +62,7 @@ export default function Login({ setUser }) {
                     type='text'
                     value={loginCredentials.email}
                     onChange={handleChange}
+                    autoComplete="off"
                 />
             </div>
             <div className="form-field">
@@ -72,6 +73,7 @@ export default function Login({ setUser }) {
                     type='password'
                     value={loginCredentials.password}
                     onChange={handleChange}
+                    autoComplete="off"
                 />
             </div>
             <input 

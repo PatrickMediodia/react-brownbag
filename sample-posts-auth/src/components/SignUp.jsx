@@ -67,6 +67,7 @@ export default function SignUp() {
                     type='text'
                     value={signupCredentials.email}
                     onChange={handleChange}
+                    autoComplete="off"
                 />
             </div>
             <div className="form-field">
@@ -77,6 +78,7 @@ export default function SignUp() {
                     type='password'
                     value={signupCredentials.password}
                     onChange={handleChange}
+                    autoComplete="off"
                 />
             </div>
             <div className="form-field">
@@ -87,6 +89,7 @@ export default function SignUp() {
                     type='password'
                     value={signupCredentials.confirmPassword}
                     onChange={handleChange}
+                    autoComplete="off"
                 />
             </div>
             <input 

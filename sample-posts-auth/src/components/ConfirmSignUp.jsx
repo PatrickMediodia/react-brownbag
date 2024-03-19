@@ -55,6 +55,7 @@ export default function ConfirmSignUp() {
                     type='text'
                     value={confirmationCode}
                     onChange={handleChange}
+                    autoComplete="off"
                 />
             </div>
             <a onClick={handleResend} className='form-link'>Resend Code</a>
