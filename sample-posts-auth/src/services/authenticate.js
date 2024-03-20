@@ -21,5 +21,7 @@ export default function authenticate({ email, password }) {
                 reject(err);
             }
         });
+        
+        // return the actual user and store it, rather than the result
     });
 };
