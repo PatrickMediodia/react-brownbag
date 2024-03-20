@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from "react-router-dom";
+import { useState, useContext } from 'react';
 import changePassword from '../services/changePassword';
+import { UserContext } from '../providers/UserProvider';
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function ChangePassword({ user }) {
+export default function ChangePassword() {
     const navigate = useNavigate();
-    
+    const [user, setUser] = useContext(UserContext);
+
     const [passwords, setPasswords] = useState({
         previousPassword: '',
         proposedPassword: '',
@@ -34,7 +36,6 @@ export default function ChangePassword({ user }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            
             await changePassword({ 
                 user: user,
                 oldPassword: passwords.previousPassword, 

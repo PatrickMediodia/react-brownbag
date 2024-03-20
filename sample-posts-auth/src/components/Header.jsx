@@ -1,12 +1,16 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import logout from "../services/logout";
+import { UserContext } from "../providers/UserProvider";
 
-export default function Header({ user, setUser }) {
+export default function Header() {
+    const [user, setUser] = useContext(UserContext);
+
     const logoutHandler = () => {
         logout();
         setUser(null);
     };
-
+    
     return (
         <header>
              <ul>

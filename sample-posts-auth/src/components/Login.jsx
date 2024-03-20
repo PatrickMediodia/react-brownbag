@@ -1,22 +1,17 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authenticate from "../services/authenticate";
+import { UserContext } from "../providers/UserProvider";
 
-/*
-TODO
-    - add handling of needing to confirm code
-    - add handling of error on incorrect credentials
-    - add handle of account not found
-*/
-
-export default function Login({ setUser }) {
+export default function Login() {
     const navigate = useNavigate();
-    
+    const [user, setUser] = useContext(UserContext);
+
     const [loginCredentials, setLoginCredetials] = useState({ 
         email: '', 
         password: ''
     });
-
+    
     const handleChange = (e) => {
         setLoginCredetials((prev) => {
             return {
@@ -57,7 +52,7 @@ export default function Login({ setUser }) {
             handleException(err.name);
         }
     }
-    
+
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className="form-header">Login</h1>
