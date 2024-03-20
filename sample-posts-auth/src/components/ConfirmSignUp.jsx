@@ -6,18 +6,17 @@ import { useLocation, useNavigate } from "react-router-dom";
 export default function ConfirmSignUp() {
     const location = useLocation();
     const navigate = useNavigate();
-    
     const [confirmationCode, setConfirmationCode] = useState('');
-
-    const handleChange = (e) => {
-        setConfirmationCode(e.target.value);
-    }
     
     useEffect(()=> {
         if (location.state === null) {
             navigate('/login');
         }
     }, []);
+
+    const handleChange = (e) => {
+        setConfirmationCode(e.target.value);
+    }
 
     const handleException = (err) => {
         switch(err) {
