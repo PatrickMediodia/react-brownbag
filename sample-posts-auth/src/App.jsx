@@ -1,7 +1,5 @@
 import './App.css';
-import { useContext } from 'react';
-import { Routes, Route } from "react-router-dom";
-import { UserContext } from './providers/UserProvider';
+import UserProvider from './providers/UserProvider';
 
 import Login from './components/Login';
 import Posts from './components/Posts';
@@ -12,31 +10,57 @@ import Message from './components/Message';
 import ConfirmSignUp from './components/ConfirmSignUp';
 import ChangePassword from './components/ChangePassword';
 
-/*
-TODO
-  - store logged in user in localStorage
-*/
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+
+function Layout() {
+  return (
+      <>
+        <Header />
+        <div className='content-body'>
+          <Outlet />
+        </div>
+        <Footer />
+      </>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    element: <Layout />,
+    children: [
+      {
+        path: '/',
+        element: <Posts />
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/signup',
+        element: <SignUp />,
+      },
+      {
+        path: '/confirmsignup',
+        element: <ConfirmSignUp />,
+      },
+      {
+        path: '/changepassword',
+        element: <ChangePassword />,
+      },
+      {
+        path: '*',
+        element: <Message  message={'Route 404. Not a valid route.'} />,
+      }
+    ]
+  }]
+);
 
 function App() {
-  const [user, setUser] = useContext(UserContext);
-  
   return (
-    <>
-      <Header/>
-      <div className='content-body'>
-        <Routes>
-          <Route path="/">
-            <Route index element={ user === null ? <Login /> : <Posts />} />
-            <Route path="login" element={<Login />} />
-            <Route path="signup" element={<SignUp />} />
-            <Route path="confirmsignup" element={<ConfirmSignUp />} />
-            <Route path="changepassword" element={<ChangePassword />} />
-            <Route path="*" element={<Message message={'Route 404. Not a valid route.'} />} />
-          </Route>
-        </Routes>
-      </div>
-      <Footer />
-    </>
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   )
 }
 

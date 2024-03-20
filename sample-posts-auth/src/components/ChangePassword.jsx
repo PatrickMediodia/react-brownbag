@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
-import changePassword from '../services/changePassword';
+import { useNavigate } from "react-router-dom";
 import { UserContext } from '../providers/UserProvider';
-import { useLocation, useNavigate } from "react-router-dom";
+import changePassword from '../services/changePassword';
 
 export default function ChangePassword() {
     const navigate = useNavigate();
