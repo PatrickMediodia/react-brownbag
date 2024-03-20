@@ -11,7 +11,7 @@ export default function authenticate({ email, password }) {
         Username: email,
         Password: password
     });
-    console.log(authDetails);
+    
     return new Promise((resolve,reject) => {
         user.authenticateUser(authDetails,{
             onSuccess: (result) => {
@@ -21,7 +21,5 @@ export default function authenticate({ email, password }) {
                 reject(err);
             }
         });
-        
-        // return the actual user and store it, rather than the result
     });
 };

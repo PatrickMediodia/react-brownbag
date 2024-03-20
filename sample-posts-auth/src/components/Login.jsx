@@ -57,7 +57,7 @@ export default function Login({ setUser }) {
             handleException(err.name);
         }
     }
-
+    
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className="form-header">Login</h1>
