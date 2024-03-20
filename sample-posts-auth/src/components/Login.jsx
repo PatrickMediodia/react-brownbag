@@ -47,10 +47,10 @@ export default function Login({ setUser }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const authDetails = await authenticate(loginCredentials);
+            const userData = await authenticate(loginCredentials);
             setUser({
                 username: loginCredentials.email,
-                details: authDetails,
+                userData: userData,
             });
             navigate('/');
         } catch(err) {

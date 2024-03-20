@@ -15,7 +15,7 @@ export default function authenticate({ email, password }) {
     return new Promise((resolve,reject) => {
         user.authenticateUser(authDetails,{
             onSuccess: (result) => {
-                resolve(result);
+                resolve(user);
             },
             onFailure: (err) => {
                 reject(err);

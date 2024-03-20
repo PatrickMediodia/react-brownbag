@@ -1,12 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from "react-router-dom";
 import changePassword from '../services/changePassword';
-// console.log(result.accessToken.jwtToken);
 
 export default function ChangePassword({ user }) {
-    const location = useLocation();
     const navigate = useNavigate();
-
+    
     const [passwords, setPasswords] = useState({
         previousPassword: '',
         proposedPassword: '',
@@ -39,7 +37,6 @@ export default function ChangePassword({ user }) {
             
             await changePassword({ 
                 user: user,
-                accessToken: user.details.accessToken.jwtToken, 
                 oldPassword: passwords.previousPassword, 
                 newPassword: passwords.proposedPassword 
             });
