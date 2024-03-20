@@ -48,7 +48,10 @@ export default function Login({ setUser }) {
         e.preventDefault();
         try {
             const authDetails = await authenticate(loginCredentials);
-            setUser(authDetails);
+            setUser({
+                username: loginCredentials.email,
+                details: authDetails,
+            });
             navigate('/');
         } catch(err) {
             handleException(err.name);

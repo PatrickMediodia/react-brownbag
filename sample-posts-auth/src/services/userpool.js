@@ -6,6 +6,6 @@ const poolData = {
 };
 
 const userPoolData = new CognitoUserPool(poolData)
-console.log(userPoolData);
+//console.log(userPoolData);
 
 export default userPoolData;

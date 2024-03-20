@@ -21,7 +21,7 @@ export default function ChangePassword({ user }) {
             }
         });
     }
-    console.log(user);
+
     const handleException = (err) => {
         switch(err) {
             case 'CodeMismatchException':
@@ -32,16 +32,18 @@ export default function ChangePassword({ user }) {
                 break;
         }
     }
-
+    
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            
             await changePassword({ 
-                accessToken: user.accessToken.jwtToken, 
+                user: user,
+                accessToken: user.details.accessToken.jwtToken, 
                 oldPassword: passwords.previousPassword, 
                 newPassword: passwords.proposedPassword 
             });
-            //navigate('/');
+            navigate('/');
             alert('Password has been changed');
         } catch(err) {
             console.log(err);
