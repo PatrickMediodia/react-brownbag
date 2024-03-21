@@ -6,13 +6,7 @@ import changePassword from '../services/changePassword';
 export default function ChangePassword() {
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
-
-    useEffect(() => {
-        if (user === null) {
-            navigate('/login');
-        }
-    }, []);
-
+    
     const [passwords, setPasswords] = useState({
         previousPassword: '',
         proposedPassword: '',

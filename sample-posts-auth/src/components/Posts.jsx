@@ -10,14 +10,10 @@ export default function Posts() {
     const [user, setUser] = useContext(UserContext);
 
     useEffect(() => {
-        if (user === null) {
-            navigate('/login');
-        } else {
-            const getPostsAsync = async () => {
-                setPosts(await getPosts());
-            };
-            getPostsAsync();
-        }
+        const getPostsAsync = async () => {
+            setPosts(await getPosts());
+        };
+        getPostsAsync();
     }, []);
     
     return (

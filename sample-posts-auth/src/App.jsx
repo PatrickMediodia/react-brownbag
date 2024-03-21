@@ -1,5 +1,6 @@
 import './App.css';
 import UserProvider from './providers/UserProvider';
+import ProtectedRoute from './providers/ProtectedRoute';
 
 import Login from './components/Login';
 import Posts from './components/Posts';
@@ -30,7 +31,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Posts />
+        element:
+          <ProtectedRoute>
+            <Posts />
+          </ProtectedRoute>
       },
       {
         path: '/login',
@@ -46,7 +50,10 @@ const router = createBrowserRouter([
       },
       {
         path: '/changepassword',
-        element: <ChangePassword />,
+        element:
+          <ProtectedRoute>
+            <ChangePassword />
+          </ProtectedRoute>
       },
       {
         path: '*',
