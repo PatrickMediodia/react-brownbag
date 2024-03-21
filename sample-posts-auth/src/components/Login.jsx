@@ -79,14 +79,14 @@ export default function Login() {
                     onChange={handleChange}
                     autoComplete="off"
                 />
-            </div>
-            <div className="form-check">
+                <div className="form-check">
                 <input 
                     type="checkbox"
                     checked={showPassword}
                     onChange={()=>setShowPassword((prev)=>!prev)}
                 />
                 Show Password
+                </div>
             </div>
             <input 
                 type="submit"
