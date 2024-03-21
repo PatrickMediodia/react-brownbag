@@ -31,10 +31,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element:
-          <ProtectedRoute>
-            <Posts />
-          </ProtectedRoute>
+        element: 
+        <ProtectedRoute>
+          <Posts />
+        </ProtectedRoute>
       },
       {
         path: '/login',
@@ -50,10 +50,9 @@ const router = createBrowserRouter([
       },
       {
         path: '/changepassword',
-        element:
-          <ProtectedRoute>
-            <ChangePassword />
-          </ProtectedRoute>
+        element: <ProtectedRoute>
+          <ChangePassword />
+        </ProtectedRoute>,
       },
       {
         path: '*',

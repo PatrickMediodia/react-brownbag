@@ -10,7 +10,7 @@ const UserProvider = (props) => {
             navigate('/login');
         }
     }, []);
-    
+
     return (
         <>
             {props.children}

@@ -22,7 +22,7 @@ export default function SignUp() {
         showPassword: false,
         showConfirmPassword: false,
     });
-    
+
     const handleChange = (e) => {
         setSignupCredetials((prev) => {
             return {
@@ -34,14 +34,13 @@ export default function SignUp() {
 
     const handleCheckChange = (e) => {
         setShowPasswords((prev) => {
-            console.log(prev)
             return {
                 ...prev,
                 [e.target.name]: !prev[e.target.name],
             }
         });
     }
-
+    
     const handleException = (err) => {
         switch(err) {
             case 'InvalidParameterException':

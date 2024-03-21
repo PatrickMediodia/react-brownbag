@@ -5,16 +5,14 @@ import { UserContext } from "../providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 
 export default function Posts() {
-    const navigate = useNavigate();
     const [posts, setPosts] = useState([]);
-    const [user, setUser] = useContext(UserContext);
 
     useEffect(() => {
         const getPostsAsync = async () => {
             setPosts(await getPosts());
         };
         getPostsAsync();
-    }, [user]);
+    }, []);
     
     return (
         <div className="posts-container">
