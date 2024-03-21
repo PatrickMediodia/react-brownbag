@@ -12,6 +12,8 @@ export default function Login() {
         password: ''
     });
     
+    const [showPassword, setShowPassword] = useState(false);
+
     const handleChange = (e) => {
         setLoginCredetials((prev) => {
             return {
@@ -72,11 +74,19 @@ export default function Login() {
                 <input
                     className="form-input"
                     name='password'
-                    type='password'
+                    type={showPassword ? 'text' : 'password'}
                     value={loginCredentials.password}
                     onChange={handleChange}
                     autoComplete="off"
                 />
+            </div>
+            <div className="form-check">
+                <input 
+                    type="checkbox"
+                    checked={showPassword}
+                    onChange={()=>setShowPassword((prev)=>!prev)}
+                />
+                Show Password
             </div>
             <input 
                 type="submit"

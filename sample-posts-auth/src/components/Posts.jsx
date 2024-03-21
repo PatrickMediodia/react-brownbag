@@ -14,7 +14,7 @@ export default function Posts() {
             setPosts(await getPosts());
         };
         getPostsAsync();
-    }, []);
+    }, [user]);
     
     return (
         <div className="posts-container">

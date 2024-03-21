@@ -18,11 +18,26 @@ export default function SignUp() {
         confirmPassword: ''
     });
 
+    const [showPasswords, setShowPasswords] = useState({
+        showPassword: false,
+        showConfirmPassword: false,
+    });
+    
     const handleChange = (e) => {
         setSignupCredetials((prev) => {
             return {
                 ...prev,
                 [e.target.name]: e.target.value,
+            }
+        });
+    }
+
+    const handleCheckChange = (e) => {
+        setShowPasswords((prev) => {
+            console.log(prev)
+            return {
+                ...prev,
+                [e.target.name]: !prev[e.target.name],
             }
         });
     }
@@ -75,22 +90,40 @@ export default function SignUp() {
                 <input
                     className="form-input"
                     name='password'
-                    type='password'
+                    type={showPasswords.showPassword ? 'text' : 'password'}
                     value={signupCredentials.password}
                     onChange={handleChange}
                     autoComplete="off"
                 />
+                <div className="form-check">
+                    <input 
+                        type="checkbox"
+                        name="showPassword"
+                        checked={showPasswords.showPassword}
+                        onChange={handleCheckChange}
+                    />
+                    Show Password
+                </div>
             </div>
             <div className="form-field">
                 Confirm Password:
                 <input
                     className="form-input"
                     name='confirmPassword'
-                    type='password'
+                    type={showPasswords.showConfirmPassword ? 'text' : 'password'}
                     value={signupCredentials.confirmPassword}
                     onChange={handleChange}
                     autoComplete="off"
                 />
+                <div className="form-check">
+                    <input 
+                        type="checkbox"
+                        name="showConfirmPassword"
+                        checked={showPasswords.showConfirmPassword}
+                        onChange={handleCheckChange}
+                    />
+                Show Password
+            </div>
             </div>
             <input 
                 type="submit"

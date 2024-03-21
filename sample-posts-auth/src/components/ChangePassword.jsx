@@ -13,6 +13,12 @@ export default function ChangePassword() {
         confirmProposedPassword: ''
     });
 
+    const [showPasswords, setShowPasswords] = useState({
+        showPassword: false,
+        showProposedPassword: false,
+        showConfirmProposedPassword: false,
+    });
+
     const handleChange = (e) => {
         setPasswords((prev) => {
             return {
@@ -22,6 +28,15 @@ export default function ChangePassword() {
         });
     }
 
+    const handleCheckChange = (e) => {
+        setShowPasswords((prev) => {
+            return {
+                ...prev,
+                [e.target.name]: !prev[e.target.name],
+            }
+        });
+    }
+    
     const handleException = (err) => {
         switch(err) {
             case 'CodeMismatchException':
@@ -57,33 +72,60 @@ export default function ChangePassword() {
                 <input
                     className="form-input"
                     name='previousPassword'
-                    type='password'
+                    type={showPasswords.showPassword ? 'text' : 'password' }
                     value={passwords.previousPassword}
                     onChange={handleChange}
                     autoComplete="off"
                 />
+                <div className="form-check">
+                    <input 
+                        type="checkbox"
+                        name="showPassword"
+                        checked={showPasswords.showPassword}
+                        onChange={handleCheckChange}
+                    />
+                    Show Password
+                </div>
             </div>
             <div className='form-field'>
                 New Password
                 <input
                     className="form-input"
                     name='proposedPassword'
-                    type='password'
+                    type={showPasswords.showProposedPassword ? 'text' : 'password' }
                     value={passwords.proposedPassword}
                     onChange={handleChange}
                     autoComplete="off"
                 />
+                <div className="form-check">
+                    <input 
+                        type="checkbox"
+                        name="showProposedPassword"
+                        checked={showPasswords.showProposedPassword}
+                        onChange={handleCheckChange}
+                    />
+                    Show Password
+                </div>
             </div>
             <div className='form-field'>
                 Confirm New Password
                 <input
                     className="form-input"
                     name='confirmProposedPassword'
-                    type='password'
-                    value={passwords.confirmProposedPassword}
+                    type={showPasswords.showConfirmedProposedPassword ? 'text' : 'password' }
+                    value={passwords.showConfirmedProposedPassword}
                     onChange={handleChange}
                     autoComplete="off"
                 />
+                <div className="form-check">
+                    <input 
+                        type="checkbox"
+                        name="showConfirmedProposedPassword"
+                        checked={showPasswords.showConfirmedProposedPassword}
+                        onChange={handleCheckChange}
+                    />
+                    Show Password
+                </div>
             </div>
             <input 
                 type="submit"
