@@ -60,6 +60,13 @@ export default function SignUp() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const { password, confirmPassword } = signupCredentials;
+        if (password !== confirmPassword) {
+            alert('Password and Confirm Password must be the same');
+            return;
+        }
+
         try {
             await signup(signupCredentials);
             navigate('/confirmsignup', {

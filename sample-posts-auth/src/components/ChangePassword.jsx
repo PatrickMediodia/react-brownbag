@@ -39,8 +39,8 @@ export default function ChangePassword() {
     
     const handleException = (err) => {
         switch(err) {
-            case 'CodeMismatchException':
-                alert('Invalid verification code provided, please try again.');
+            case 'NotAuthorizedException':
+                alert('Incorrect old password');
                 break;
             default:
                 alert(err);
@@ -50,6 +50,12 @@ export default function ChangePassword() {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const { proposedPassword, confirmProposedPassword } = passwords;
+        if (proposedPassword !== confirmProposedPassword) {
+            alert('New Password and Confirm New Password must be the same');
+            return;
+        }
+
         try {
             await changePassword({ 
                 user: user,
