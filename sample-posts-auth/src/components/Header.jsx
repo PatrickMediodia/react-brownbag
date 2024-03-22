@@ -20,7 +20,6 @@ export default function Header() {
                     <>
                         <li>Home</li>
                         <Link to='/' className="link">Posts</Link>
-                        <li>Profile</li>
                     </>
                 }
                 <li className="right-align">
