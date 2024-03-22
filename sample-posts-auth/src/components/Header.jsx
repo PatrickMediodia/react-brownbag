@@ -9,6 +9,7 @@ export default function Header() {
     const logoutHandler = () => {
         logout();
         setUser(null);
+        alert('Account has been signed out');
         navigate('/');
     };
     

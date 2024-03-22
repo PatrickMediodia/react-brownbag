@@ -36,6 +36,7 @@ export default function ConfirmSignUp() {
                 location.state.username,
                 confirmationCode
             );
+            alert('Account Confirmation Successful');
             navigate('/login');
         } catch(err) {
             handleException(err.name);

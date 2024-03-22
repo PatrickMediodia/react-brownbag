@@ -1,8 +1,6 @@
-import { useContext, useEffect, useState } from "react";
 import Post from "./Post";
 import getPosts from '../utils/getPosts';
-import { UserContext } from "../providers/UserProvider";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Posts() {
     const [posts, setPosts] = useState([]);

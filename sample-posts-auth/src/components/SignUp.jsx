@@ -2,13 +2,6 @@ import { useState } from "react";
 import signup from "../services/signup";
 import { Link, useNavigate } from "react-router-dom";
 
-/*
-TODO
-    - add functionality for redirect on successful signup
-    - add functionality for validating sign up data
-    - add functionality for confirm password
-*/
-
 export default function SignUp() {
     const navigate = useNavigate();
 

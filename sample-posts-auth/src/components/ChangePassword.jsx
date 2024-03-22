@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
 import { UserContext } from '../providers/UserProvider';
 import changePassword from '../services/changePassword';
@@ -47,7 +47,7 @@ export default function ChangePassword() {
                 break;
         }
     }
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { proposedPassword, confirmProposedPassword } = passwords;
