@@ -8,6 +8,17 @@ html, body, html * {
   padding: 0;
 }
 
+pre {
+  white-space: -moz-pre-wrap; /* Mozilla, supported since 1999 */
+  white-space: -pre-wrap; /* Opera */
+  white-space: -o-pre-wrap; /* Opera */
+  white-space: pre-wrap; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+  word-wrap: keep-all; /* IE 5.5+ */
+  display: inline-block;
+  overflow: auto;
+  overflow-wrap: anywhere;
+}
+
 header, footer {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
@@ -123,4 +134,21 @@ li {
   gap: 0.5rem;
   font-size: 15px;
   float: right;
+}
+
+.pre-body {
+  width: 80rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  padding: 2rem;
+}
+
+.link {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  float: left;
+  text-decoration: none;
 }

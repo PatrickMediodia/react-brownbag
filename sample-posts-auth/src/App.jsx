@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Header from './components/Header';
 import SignUp from './components/SignUp';
 import Message from './components/Message';
+import ViewProfile from './components/ViewProfile';
 import ConfirmSignUp from './components/ConfirmSignUp';
 import ChangePassword from './components/ChangePassword';
 
@@ -39,6 +40,12 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />,
+      },
+      {
+        path: '/profile',
+        element: <ProtectedRoute>
+          <ViewProfile />
+        </ProtectedRoute> ,
       },
       {
         path: '/signup',

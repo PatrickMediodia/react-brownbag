@@ -8,9 +8,9 @@ export default function Header() {
 
     const logoutHandler = () => {
         logout();
-        setUser(null);
         alert('Account has been signed out');
         navigate('/');
+        setUser(null);
     };
     
     return (
@@ -19,11 +19,18 @@ export default function Header() {
                 { user &&
                     <>
                         <li>Home</li>
-                        <li>Posts</li>
+                        <Link to='/' className="link">Posts</Link>
                         <li>Profile</li>
                     </>
                 }
                 <li className="right-align">
+                    { user ? <Link 
+                        to='/profile' 
+                        className="form-link"
+                    >
+                        Profile
+                    </Link> : undefined
+                    }
                     { user ? <Link 
                         to='/changepassword' 
                         className="form-link"
