@@ -40,7 +40,11 @@ export default function SignUp() {
                 alert('Please Confirm your email');
                 break;
             case 'InvalidPasswordException':
-                alert('Invalid Password Used.');
+                alert(`Invalid Password Used. Password must have the following.\n
+- Contains at least 1 number
+- Contains at least 1 special character
+- Contains at least 1 uppercase letter
+- Contains at least 1 lowercase letter`);
                 break;
             case 'UsernameExistsException':
                 alert('User with that email already exists. Please login.');
