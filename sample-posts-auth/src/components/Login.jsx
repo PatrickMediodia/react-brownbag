@@ -5,10 +5,7 @@ import authenticate from "../services/authenticate";
 import { UserContext } from "../providers/UserProvider";
 
 export default function Login() {
-    const cookies = new Cookies(null, {
-        path: '/',
-        //maxAge: 7 * 60 * 1000,
-    });
+    const cookies = new Cookies(null, { path: '/' });
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
 
@@ -50,9 +47,10 @@ export default function Login() {
         e.preventDefault();
         try {
             const userData = await authenticate(loginCredentials);
-            setUser(userData);
-            cookies.set('jwt', userData.signInUserSession.accessToken.jwtToken);
-            console.log(cookies.get('jwt'))
+            const jwt = userData.signInUserSession.accessToken.jwtToken;
+            setUser(jwt);
+            const expiryTime = (userData.signInUserSession.accessToken.payload.exp * 1000) - new Date().getTime();
+            cookies.set('jwt', jwt, { maxAge:  expiryTime });
             navigate('/');
         } catch(err) {
             console.log(err);

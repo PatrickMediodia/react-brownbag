@@ -1,19 +1,25 @@
+import userpool from './userpool';
+
 export default function changePassword({ user, oldPassword, newPassword }) {
+    const currentUser = userpool.getCurrentUser();
+
     return new Promise((resolve, reject) => {
-        try {
-            user.changePassword(
-                oldPassword,
-                newPassword,
-                (err, res) => {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        resolve(res);
-                    }
+        currentUser.getSession((err, res)=> {
+            if (err) {
+                reject(err);
+            }
+        });
+
+        currentUser.changePassword(
+            oldPassword,
+            newPassword,
+            (err, res) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(res);
                 }
-            );
-        } catch(err) {
-            reject(err);
-        }
+            }
+        );
     });
 };
