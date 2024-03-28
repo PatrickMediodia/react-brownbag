@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import forgotPassword from '../services/forgotPassword';
 
 export default function ConfirmSignUp() {
@@ -53,6 +53,10 @@ export default function ConfirmSignUp() {
                 className="form-button"
                 value="Submit"
             />
+            <div className="form-link">
+                Remember your password?&nbsp;
+                <Link to='/login' className="form-link">Login</Link>
+            </div>
         </form>
     );
 }
