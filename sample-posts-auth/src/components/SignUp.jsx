@@ -6,7 +6,7 @@ export default function SignUp() {
     const navigate = useNavigate();
 
     const [signupCredentials, setSignupCredetials] = useState({ 
-        email: '', 
+        email: '',
         password: '',
         confirmPassword: ''
     });
@@ -84,7 +84,7 @@ export default function SignUp() {
             handleException(err.name);
         }
     }
-    
+
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className="form-header">Sign Up</h1>

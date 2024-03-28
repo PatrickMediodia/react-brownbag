@@ -7,7 +7,7 @@ export default function changePassword({ oldPassword, newPassword }) {
         currentUser.getSession((err, res)=> {
             if (err) reject(err);
         });
-
+        
         currentUser.changePassword(
             oldPassword,
             newPassword,

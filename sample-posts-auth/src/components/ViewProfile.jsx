@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import userpool from '../services/userpool';
-import { useState } from 'react';
 
 export default function ViewProfile() {
     const [viewUserObject, setViewUserObject] = useState(false);
@@ -18,7 +18,7 @@ export default function ViewProfile() {
         given_name, 
         middle_name 
     } = currentUser.signInUserSession.idToken.payload;
-    
+
     const userObject = <div className="pre-body">
         <h1 className="form-header">User Object</h1>
         <div className="form-link">
@@ -96,7 +96,7 @@ export default function ViewProfile() {
             />
         </div>
         <div className="form-link">
-            <Link to='/changepassword' className="form-link">Edit Profile</Link>
+            <Link to='/editprofile' className="form-link">Edit Profile</Link>
             &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
             <Link to='/changepassword' className="form-link">Change Password</Link>
         </div>
