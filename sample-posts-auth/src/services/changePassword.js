@@ -5,9 +5,7 @@ export default function changePassword({ oldPassword, newPassword }) {
 
     return new Promise((resolve, reject) => {
         currentUser.getSession((err, res)=> {
-            if (err) {
-                reject(err);
-            }
+            if (err) reject(err);
         });
 
         currentUser.changePassword(

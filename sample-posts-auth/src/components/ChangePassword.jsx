@@ -1,5 +1,5 @@
-import { useState, useContext } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate, Link } from "react-router-dom";
 import changePassword from '../services/changePassword';
 
 export default function ChangePassword() {
@@ -134,6 +134,9 @@ export default function ChangePassword() {
                 className="form-button"
                 value="Submit"
             />
+            <div className="form-link">
+                <Link to='/profile' className="form-link">View Profile</Link>
+            </div>
         </form>
     );
 }

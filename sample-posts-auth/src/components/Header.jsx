@@ -34,13 +34,6 @@ export default function Header() {
                         Profile
                     </Link> : undefined
                     }
-                    { user ? <Link 
-                        to='/changepassword' 
-                        className="form-link"
-                    >
-                        Change Password
-                    </Link> : undefined
-                    }
                     <Link 
                         to={user ? '/' : '/login'} 
                         className="form-link"
