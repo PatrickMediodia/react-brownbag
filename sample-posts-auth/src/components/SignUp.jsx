@@ -66,11 +66,21 @@ export default function SignUp() {
         }
 
         try {
-            await signup(signupCredentials);
+            await signup({ 
+                email: signupCredentials.email, 
+                given_name: 'given name', 
+                middle_name: 'middle name', 
+                family_name: 'family name', 
+                phone_number: '+6399900001111', 
+                birthdate: '2000-01-01', 
+                address: 'address', 
+                password: signupCredentials.password,
+            });
             navigate('/confirmsignup', {
                 state: { username: signupCredentials.email }
             });
         } catch(err) {
+            console.log(err);
             handleException(err.name);
         }
     }
