@@ -1,7 +1,7 @@
 export default function changePassword({ user, oldPassword, newPassword }) {
     return new Promise((resolve, reject) => {
         try {
-            user.userData.changePassword(
+            user.changePassword(
                 oldPassword,
                 newPassword,
                 (err, res) => {

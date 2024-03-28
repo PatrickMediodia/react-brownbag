@@ -1,13 +1,22 @@
+import Cookies from 'universal-cookie';
 import { useContext, useEffect } from 'react';
 import { UserContext } from './UserProvider';
 import { useNavigate } from 'react-router-dom';
+
 const UserProvider = (props) => {
-    const [user, setUser] = useContext(UserContext);
+    const cookies = new Cookies();
     const navigate = useNavigate();
-    
+    const [user, setUser] = useContext(UserContext);
+
     useEffect(() => {
         if (user === null) {
-            navigate('/login');
+            const jwt = cookies.get('jwt');
+            console.log(jwt);
+            if (jwt) {     
+                setUser(jwt);        
+            } else {
+                navigate('/login');
+            }
         }
     }, []);
 

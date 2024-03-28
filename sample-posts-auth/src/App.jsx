@@ -2,8 +2,8 @@ import './App.css';
 import UserProvider from './providers/UserProvider';
 import ProtectedRoute from './providers/ProtectedRoute';
 
+//import Posts from './components/Posts';
 import Login from './components/Login';
-import Posts from './components/Posts';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import SignUp from './components/SignUp';
@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         path: '/',
         element: 
         <ProtectedRoute>
-          <Posts />
+          <Message message='Logged in, posts endpoint is currently broken.'/>
         </ProtectedRoute>
       },
       {

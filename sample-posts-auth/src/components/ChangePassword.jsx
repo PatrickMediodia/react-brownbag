@@ -119,7 +119,7 @@ export default function ChangePassword() {
                     className="form-input"
                     name='confirmProposedPassword'
                     type={showPasswords.showConfirmedProposedPassword ? 'text' : 'password' }
-                    value={passwords.showConfirmedProposedPassword}
+                    value={passwords.confirmProposedPassword}
                     onChange={handleChange}
                     autoComplete="off"
                 />

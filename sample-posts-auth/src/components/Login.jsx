@@ -1,9 +1,14 @@
+import Cookies from "universal-cookie";
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import authenticate from "../services/authenticate";
 import { UserContext } from "../providers/UserProvider";
 
 export default function Login() {
+    const cookies = new Cookies(null, {
+        path: '/',
+        //maxAge: 7 * 60 * 1000,
+    });
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
 
@@ -11,7 +16,7 @@ export default function Login() {
         email: '', 
         password: ''
     });
-    
+
     const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (e) => {
@@ -45,16 +50,16 @@ export default function Login() {
         e.preventDefault();
         try {
             const userData = await authenticate(loginCredentials);
-            setUser({
-                username: loginCredentials.email,
-                userData: userData,
-            });
+            setUser(userData);
+            cookies.set('jwt', userData.signInUserSession.accessToken.jwtToken);
+            console.log(cookies.get('jwt'))
             navigate('/');
         } catch(err) {
+            console.log(err);
             handleException(err.name);
         }
     }
-
+    
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className="form-header">Login</h1>
