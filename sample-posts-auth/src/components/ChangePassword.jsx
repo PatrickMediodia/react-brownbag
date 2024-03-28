@@ -57,8 +57,7 @@ export default function ChangePassword() {
         }
 
         try {
-            await changePassword({ 
-                user: user,
+            await changePassword({
                 oldPassword: passwords.previousPassword, 
                 newPassword: passwords.proposedPassword 
             });

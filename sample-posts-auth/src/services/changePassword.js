@@ -1,6 +1,6 @@
 import userpool from './userpool';
 
-export default function changePassword({ user, oldPassword, newPassword }) {
+export default function changePassword({ oldPassword, newPassword }) {
     const currentUser = userpool.getCurrentUser();
 
     return new Promise((resolve, reject) => {
