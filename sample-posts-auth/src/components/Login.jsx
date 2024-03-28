@@ -53,7 +53,6 @@ export default function Login() {
             cookies.set('jwt', jwt, { maxAge:  expiryTime });
             navigate('/');
         } catch(err) {
-            console.log(err);
             handleException(err.name);
         }
     }

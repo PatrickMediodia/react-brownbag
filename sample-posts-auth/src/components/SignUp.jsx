@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function SignUp() {
     const navigate = useNavigate();
 
-    const [ signupCredentials, setSignupCredetials] = useState({ 
+    const [signupCredentials, setSignupCredetials] = useState({ 
         email: '', 
         password: '',
         confirmPassword: ''
@@ -41,6 +41,7 @@ export default function SignUp() {
                 break;
             case 'InvalidPasswordException':
                 alert(`Invalid Password Used. Password must have the following.\n
+- Must be at least 8 characters
 - Contains at least 1 number
 - Contains at least 1 special character
 - Contains at least 1 uppercase letter
@@ -125,7 +126,7 @@ export default function SignUp() {
                         checked={showPasswords.showConfirmPassword}
                         onChange={handleCheckChange}
                     />
-                Show Password
+                Show Confirm Password
             </div>
             </div>
             <input 

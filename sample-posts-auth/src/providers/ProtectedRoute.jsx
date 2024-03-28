@@ -11,7 +11,6 @@ const UserProvider = (props) => {
     useEffect(() => {
         if (user === null) {
             const jwt = cookies.get('jwt');
-            console.log(jwt);
             if (jwt) {     
                 setUser(jwt);        
             } else {

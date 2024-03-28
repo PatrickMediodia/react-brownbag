@@ -1,12 +1,10 @@
 import { useState, useContext } from 'react';
 import { useNavigate } from "react-router-dom";
-import { UserContext } from '../providers/UserProvider';
 import changePassword from '../services/changePassword';
 
 export default function ChangePassword() {
     const navigate = useNavigate();
-    const [user, setUser] = useContext(UserContext);
-    
+
     const [passwords, setPasswords] = useState({
         previousPassword: '',
         proposedPassword: '',
@@ -18,7 +16,7 @@ export default function ChangePassword() {
         showProposedPassword: false,
         showConfirmProposedPassword: false,
     });
-
+    
     const handleChange = (e) => {
         setPasswords((prev) => {
             return {
@@ -64,7 +62,6 @@ export default function ChangePassword() {
             navigate('/');
             alert('Password has been changed');
         } catch(err) {
-            console.log(err);
             handleException(err.name);
         }
     }
@@ -117,7 +114,7 @@ export default function ChangePassword() {
                 <input
                     className="form-input"
                     name='confirmProposedPassword'
-                    type={showPasswords.showConfirmedProposedPassword ? 'text' : 'password' }
+                    type={showPasswords.showConfirmProposedPassword ? 'text' : 'password' }
                     value={passwords.confirmProposedPassword}
                     onChange={handleChange}
                     autoComplete="off"
@@ -125,8 +122,8 @@ export default function ChangePassword() {
                 <div className="form-check">
                     <input 
                         type="checkbox"
-                        name="showConfirmedProposedPassword"
-                        checked={showPasswords.showConfirmedProposedPassword}
+                        name="showConfirmProposedPassword"
+                        checked={showPasswords.showConfirmProposedPassword}
                         onChange={handleCheckChange}
                     />
                     Show Password

@@ -19,7 +19,6 @@ export default function ConfirmSignUp() {
     }
 
     const handleException = (err) => {
-        console.log(err);
         switch(err) {
             case 'CodeMismatchException':
                 alert('Invalid verification code provided, please try again.');
