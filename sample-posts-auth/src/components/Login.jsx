@@ -49,7 +49,7 @@ export default function Login() {
             const userData = await authenticate(loginCredentials);
             const jwt = userData.signInUserSession.accessToken.jwtToken;
             setUser(jwt);
-            
+
             const expiryTime = (userData.signInUserSession.accessToken.payload.exp * 1000) - new Date().getTime();
             cookies.set('jwt', jwt, { maxAge:  expiryTime });
             navigate('/');

@@ -17,13 +17,15 @@ export default function ConfirmForgotPassword() {
     }, []);
 
     const handleException = (err) => {
-        switch(err) {
+        console.log(err);
+        const { name, message } = err;
+        switch(name) {
             default:
-                alert(err);
+                alert(message);
                 break;
         }
     }
-    
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -35,11 +37,10 @@ export default function ConfirmForgotPassword() {
             alert('Password Recovery Successful');
             navigate('/login');
         } catch(err) {
-            console.log(err);
-            handleException(err.name);
+            handleException(err);
         }
     }
-
+    
     return (
         <form className='form' onSubmit={handleSubmit}>
             <h1 className="form-header">Forgot Password</h1>
