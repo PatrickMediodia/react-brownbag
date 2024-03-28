@@ -49,6 +49,7 @@ export default function Login() {
             const userData = await authenticate(loginCredentials);
             const jwt = userData.signInUserSession.accessToken.jwtToken;
             setUser(jwt);
+            
             const expiryTime = (userData.signInUserSession.accessToken.payload.exp * 1000) - new Date().getTime();
             cookies.set('jwt', jwt, { maxAge:  expiryTime });
             navigate('/');
@@ -82,13 +83,14 @@ export default function Login() {
                     autoComplete="off"
                 />
                 <div className="form-check">
-                <input 
-                    type="checkbox"
-                    checked={showPassword}
-                    onChange={()=>setShowPassword((prev)=>!prev)}
-                />
-                Show Password
+                    <input 
+                        type="checkbox"
+                        checked={showPassword}
+                        onChange={()=>setShowPassword((prev)=>!prev)}
+                    />
+                    Show Password
                 </div>
+                <Link to='/forgotpassword' className="form-link">Forgot Password?</Link>
             </div>
             <input 
                 type="submit"

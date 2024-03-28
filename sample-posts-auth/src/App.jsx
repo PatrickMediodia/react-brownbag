@@ -11,6 +11,8 @@ import Message from './components/Message';
 import ViewProfile from './components/ViewProfile';
 import ConfirmSignUp from './components/ConfirmSignUp';
 import ChangePassword from './components/ChangePassword';
+import ForgotPassword from './components/ForgotPassword';
+import ConfirmForgotPassword from './components/ConfirmForgotPassword';
 
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
       {
         path: '/confirmsignup',
         element: <ConfirmSignUp />,
+      },
+      {
+        path: '/forgotpassword',
+        element: <ForgotPassword />,
+      },
+      {
+        path: '/confirmforgotpassword',
+        element: <ConfirmForgotPassword />,
       },
       {
         path: '/changepassword',

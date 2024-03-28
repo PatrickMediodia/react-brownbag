@@ -1,5 +1,5 @@
-import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 import userpool from './userpool';
+import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
 
 export default function authenticate({ email, password }) {
     const user = new CognitoUser({
