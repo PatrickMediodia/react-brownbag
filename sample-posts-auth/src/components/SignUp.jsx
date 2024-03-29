@@ -71,16 +71,7 @@ export default function SignUp() {
         }
 
         try {
-            await signup({ 
-                email: formData.email, 
-                given_name: formData.given_name, 
-                middle_name: formData.middle_name, 
-                family_name: formData.family_name, 
-                phone_number: formData.phone_number, 
-                birthdate: formData.birthdate, 
-                address: formData.address, 
-                password: formData.password,
-            });
+            await signup({ ...formData });
             navigate('/confirmsignup', {
                 state: { username: formData.email }
             });
@@ -89,7 +80,7 @@ export default function SignUp() {
             handleException(err.name);
         }
     }
-
+    
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className="form-header">Sign Up</h1>

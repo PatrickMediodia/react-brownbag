@@ -9,7 +9,7 @@ export default function ViewProfile() {
     currentUser.getSession((err, res)=> {
         if (err) reject(err);
     });
-
+    
     const { 
         email, 
         address, 
