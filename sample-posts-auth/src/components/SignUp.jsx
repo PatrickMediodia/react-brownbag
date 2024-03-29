@@ -5,10 +5,15 @@ import { Link, useNavigate } from "react-router-dom";
 export default function SignUp() {
     const navigate = useNavigate();
 
-    const [signupCredentials, setSignupCredetials] = useState({ 
+    const [formData, setFormData] = useState({
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        phone_number: '', 
+        family_name: '', 
+        given_name: '', 
+        middle_name: '',
+        address: '',
     });
 
     const [showPasswords, setShowPasswords] = useState({
@@ -17,7 +22,7 @@ export default function SignUp() {
     });
 
     const handleChange = (e) => {
-        setSignupCredetials((prev) => {
+        setFormData((prev) => {
             return {
                 ...prev,
                 [e.target.name]: e.target.value,
@@ -36,9 +41,9 @@ export default function SignUp() {
     
     const handleException = (err) => {
         switch(err) {
-            case 'InvalidParameterException':
-                alert('Please Confirm your email');
-                break;
+            // case 'InvalidParameterException':
+            //     alert('Please Confirm your email');
+            //     break;
             case 'InvalidPasswordException':
                 alert(`Invalid Password Used. Password must have the following.\n
 - Must be at least 8 characters
@@ -59,7 +64,7 @@ export default function SignUp() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const { password, confirmPassword } = signupCredentials;
+        const { password, confirmPassword } = formData;
         if (password !== confirmPassword) {
             alert('Password and Confirm Password must be the same');
             return;
@@ -67,17 +72,17 @@ export default function SignUp() {
 
         try {
             await signup({ 
-                email: signupCredentials.email, 
-                given_name: 'given name', 
-                middle_name: 'middle name', 
-                family_name: 'family name', 
-                phone_number: '+6399900001111', 
-                birthdate: '2000-01-01', 
-                address: 'address', 
-                password: signupCredentials.password,
+                email: formData.email, 
+                given_name: formData.given_name, 
+                middle_name: formData.middle_name, 
+                family_name: formData.family_name, 
+                phone_number: formData.phone_number, 
+                birthdate: formData.birthdate, 
+                address: formData.address, 
+                password: formData.password,
             });
             navigate('/confirmsignup', {
-                state: { username: signupCredentials.email }
+                state: { username: formData.email }
             });
         } catch(err) {
             console.log(err);
@@ -88,13 +93,17 @@ export default function SignUp() {
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className="form-header">Sign Up</h1>
+            <div className="form-link">
+                Already have an account?&nbsp;
+                <Link to='/login' className="form-link">Login</Link>
+            </div>
             <div className="form-field">
                 Email: 
                 <input
                     className="form-input"
                     name='email'
                     type='text'
-                    value={signupCredentials.email}
+                    value={formData.email}
                     onChange={handleChange}
                     autoComplete="off"
                 />
@@ -105,7 +114,7 @@ export default function SignUp() {
                     className="form-input"
                     name='password'
                     type={showPasswords.showPassword ? 'text' : 'password'}
-                    value={signupCredentials.password}
+                    value={formData.password}
                     onChange={handleChange}
                     autoComplete="off"
                 />
@@ -125,7 +134,7 @@ export default function SignUp() {
                     className="form-input"
                     name='confirmPassword'
                     type={showPasswords.showConfirmPassword ? 'text' : 'password'}
-                    value={signupCredentials.confirmPassword}
+                    value={formData.confirmPassword}
                     onChange={handleChange}
                     autoComplete="off"
                 />
@@ -137,17 +146,69 @@ export default function SignUp() {
                         onChange={handleCheckChange}
                     />
                 Show Confirm Password
+                </div>
             </div>
+            <h2 className="form-header">Profile</h2>
+            <div className="form-field">
+                First Name: 
+                <input
+                    className="form-input"
+                    name='given_name'
+                    type='text'
+                    value={formData.given_name}
+                    autoComplete="off"
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-field">
+                Middle Name: 
+                <input
+                    className="form-input"
+                    name='middle_name'
+                    type='text'
+                    value={formData.middle_name}
+                    autoComplete="off"
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-field">
+                Last Name: 
+                <input
+                    className="form-input"
+                    name='family_name'
+                    type='text'
+                    value={formData.family_name}
+                    autoComplete="off"
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-field">
+                Phone Number: 
+                <input
+                    className="form-input"
+                    name='phone_number'
+                    type='text'
+                    value={formData.phone_number}
+                    autoComplete="off"
+                    onChange={handleChange}
+                />
+            </div>
+            <div className="form-field">
+                Address:
+                <input
+                    className="form-input"
+                    name='address'
+                    type='text'
+                    value={formData.address}
+                    autoComplete="off"
+                    onChange={handleChange}
+                />
             </div>
             <input 
                 type="submit"
                 className="form-button"
                 value="Submit"
             />
-            <div className="form-link">
-                Already have an account?&nbsp;
-                <Link to='/login' className="form-link">Login</Link>
-            </div>
         </form>
     );
 }

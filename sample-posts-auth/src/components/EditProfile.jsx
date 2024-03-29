@@ -61,6 +61,7 @@ export default function EditProfile() {
                     value={formData.email}
                     autoComplete="off"
                     onChange={handleChange}
+                    disabled
                 />
             </div>
             <div className="form-field">
@@ -108,7 +109,7 @@ export default function EditProfile() {
                 />
             </div>
             <div className="form-field">
-                Address 
+                Address:
                 <input
                     className="form-input"
                     name='address'

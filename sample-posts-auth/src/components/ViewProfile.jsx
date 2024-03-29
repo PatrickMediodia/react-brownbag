@@ -85,7 +85,7 @@ export default function ViewProfile() {
             />
         </div>
         <div className="form-field">
-            Address 
+            Address:
             <input
                 className="form-input"
                 name='address'
