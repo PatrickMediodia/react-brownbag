@@ -17,15 +17,12 @@ export default function Header() {
         navigate('/');
     };
 
+    
     return (
         <header>
              <ul>
-                { user &&
-                    <>
-                        <li>Home</li>
-                        <Link to='/' className="link">Posts</Link>
-                    </>
-                }
+                <li><Link to='/' className="link">Home</Link></li>
+                <li>{user && <Link to='/posts' className="link">Posts</Link>}</li>
                 <li className="right-align">
                     { user ? <Link 
                         to='/profile' 
@@ -35,7 +32,7 @@ export default function Header() {
                     </Link> : undefined
                     }
                     <Link 
-                        to={user ? '/' : '/login'} 
+                        to={user ? '/posts' : '/login'} 
                         className="form-link"
                         onClick={user ? logoutHandler : undefined}
                     >

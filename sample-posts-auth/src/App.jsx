@@ -34,9 +34,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        element: <Message message='Home Page. Unprotected Route'/>,
+      },
+      {
+        path: '/posts',
         element: <ProtectedRoute>
           <Message message='Logged in, posts endpoint is currently broken.'/>
-        </ProtectedRoute>
+        </ProtectedRoute>,
       },
       {
         path: '/login',

@@ -59,7 +59,7 @@ export default function ChangePassword() {
                 oldPassword: passwords.previousPassword, 
                 newPassword: passwords.proposedPassword 
             });
-            navigate('/');
+            navigate('/posts');
             alert('Password has been changed');
         } catch(err) {
             handleException(err.name);

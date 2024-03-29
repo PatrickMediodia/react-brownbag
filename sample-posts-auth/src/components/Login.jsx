@@ -7,8 +7,8 @@ import { UserContext } from "../providers/UserProvider";
 export default function Login() {
     const cookies = new Cookies(null, { path: '/' });
     const navigate = useNavigate();
-    const [user, setUser] = useContext(UserContext);
-
+    const setUser = useContext(UserContext)[1];
+    
     const [loginCredentials, setLoginCredetials] = useState({ 
         email: '', 
         password: ''
@@ -52,7 +52,7 @@ export default function Login() {
 
             const expiryTime = (userData.signInUserSession.accessToken.payload.exp * 1000) - new Date().getTime();
             cookies.set('jwt', jwt, { maxAge:  expiryTime });
-            navigate('/');
+            navigate('/posts');
         } catch(err) {
             handleException(err.name);
         }
