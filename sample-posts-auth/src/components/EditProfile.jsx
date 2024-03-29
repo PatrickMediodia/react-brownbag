@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import userpool from '../services/userpool';
+import { Link, useNavigate } from 'react-router-dom';
 import updateProfile from '../services/updateProfile';
 
 export default function EditProfile() {

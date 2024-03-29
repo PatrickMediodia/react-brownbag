@@ -5,9 +5,9 @@ import authenticate from "../services/authenticate";
 import { UserContext } from "../providers/UserProvider";
 
 export default function Login() {
-    const cookies = new Cookies(null, { path: '/' });
     const navigate = useNavigate();
     const setUser = useContext(UserContext)[1];
+    const cookies = new Cookies(null, { path: '/' });
     
     const [loginCredentials, setLoginCredetials] = useState({ 
         email: '', 

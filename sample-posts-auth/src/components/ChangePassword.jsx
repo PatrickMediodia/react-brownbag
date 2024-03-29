@@ -16,7 +16,7 @@ export default function ChangePassword() {
         showProposedPassword: false,
         showConfirmProposedPassword: false,
     });
-    
+
     const handleChange = (e) => {
         setPasswords((prev) => {
             return {
@@ -25,7 +25,7 @@ export default function ChangePassword() {
             }
         });
     }
-
+    
     const handleCheckChange = (e) => {
         setShowPasswords((prev) => {
             return {
@@ -34,7 +34,7 @@ export default function ChangePassword() {
             }
         });
     }
-    
+
     const handleException = (err) => {
         switch(err) {
             case 'NotAuthorizedException':

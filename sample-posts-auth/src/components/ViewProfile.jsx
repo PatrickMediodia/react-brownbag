@@ -1,15 +1,15 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import userpool from '../services/userpool';
 
 export default function ViewProfile() {
     const [viewUserObject, setViewUserObject] = useState(false);
-
+    
     const currentUser = userpool.getCurrentUser();
     currentUser.getSession((err, res)=> {
         if (err) reject(err);
     });
-    
+
     const { 
         email, 
         address, 
