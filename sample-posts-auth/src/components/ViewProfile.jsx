@@ -105,6 +105,6 @@ export default function ViewProfile() {
             <Link className="form-link" onClick={()=>setViewUserObject(true)}>View User Object</Link>
         </div>
     </div>;
-
+    
     return (viewUserObject ? userObject : profile);
 }
