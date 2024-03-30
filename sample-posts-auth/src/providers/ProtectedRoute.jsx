@@ -1,6 +1,7 @@
 import Cookies from 'universal-cookie';
-import { useContext, useLayoutEffect } from 'react';
+import userpool from '../services/userpool';
 import { UserContext } from './UserProvider';
+import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const UserProvider = (props) => {
@@ -8,17 +9,19 @@ const UserProvider = (props) => {
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
 
-    useLayoutEffect(()=> {
-        if (user === null) {
+    useEffect(() => {
+        const currentUser = userpool.getCurrentUser();
+        if (user === null || currentUser === null) {
             const jwt = cookies.get('jwt');
             if (jwt !== undefined) {     
-                setUser(jwt);        
+                setUser(jwt);
+                console.log(`Kept User Session: ${jwt}`)      
             } else {
                 navigate('/login');
             }
         }
     }, []);
-    
+
     return (
         <>
             {props.children}
