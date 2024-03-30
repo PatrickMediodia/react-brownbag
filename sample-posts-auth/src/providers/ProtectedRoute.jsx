@@ -1,18 +1,17 @@
-import Cookies from 'universal-cookie';
-import userpool from '../services/userpool';
+
 import { UserContext } from './UserProvider';
-import { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect,useRef } from 'react';
+import { getCookies } from '../utils/manageUserCookies';
 
 const UserProvider = (props) => {
-    const cookies = new Cookies();
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
-
+    const isMounted = useRef(false);
+    
     useEffect(() => {
-        const currentUser = userpool.getCurrentUser();
-        if (user === null || currentUser === null) {
-            const jwt = cookies.get('jwt');
+        if (user === null) {
+            const jwt = getCookies();
             if (jwt !== undefined) {     
                 setUser(jwt);
                 console.log(`Kept User Session: ${jwt}`)      
@@ -20,11 +19,12 @@ const UserProvider = (props) => {
                 navigate('/login');
             }
         }
+        isMounted.current = true;
     }, []);
 
     return (
         <>
-            {props.children}
+            {isMounted ? props.children : undefined}
         </>
     );
 };

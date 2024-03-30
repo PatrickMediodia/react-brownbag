@@ -1,14 +1,13 @@
-import Cookies from "universal-cookie";
 import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import authenticate from "../services/authenticate";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
+import { setCookies } from "../utils/manageUserCookies";
 
 export default function Login() {
     const navigate = useNavigate();
     const setUser = useContext(UserContext)[1];
-    const cookies = new Cookies(null, { path: '/' });
-    
+
     const [loginCredentials, setLoginCredetials] = useState({ 
         email: '', 
         password: ''
@@ -47,13 +46,11 @@ export default function Login() {
         e.preventDefault();
         try {
             const userData = await authenticate(loginCredentials);
-            const jwt = userData.signInUserSession.accessToken.jwtToken;
-            setUser(jwt);
-
-            const expiryTime = (userData.signInUserSession.accessToken.payload.exp * 1000) - new Date().getTime();
-            cookies.set('jwt', jwt, { maxAge:  expiryTime });
+            setCookies(userData);
+            setUser(userData.signInUserSession.accessToken.jwtToken);
             navigate('/posts');
         } catch(err) {
+            console.log(err);
             handleException(err.name);
         }
     }

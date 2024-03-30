@@ -1,17 +1,16 @@
 import { useContext } from "react";
-import Cookies from "universal-cookie";
+import { Link } from "react-router-dom";
 import logout from "../services/logout";
-import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
+import { removeCookies } from "../utils/manageUserCookies";
 
 export default function Header() {
-    const cookies = new Cookies();
     const [user, setUser] = useContext(UserContext);
 
     const logoutHandler = () => {
-        cookies.remove('jwt');
         logout();
         setUser(null);
+        removeCookies();
         alert('Account has been signed out');
     };
     
