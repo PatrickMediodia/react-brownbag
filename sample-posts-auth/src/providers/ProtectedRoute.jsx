@@ -11,7 +11,7 @@ const UserProvider = (props) => {
     useEffect(() => {
         if (user === null) {
             const jwt = cookies.get('jwt');
-            if (jwt) {     
+            if (jwt !== undefined) {     
                 setUser(jwt);        
             } else {
                 navigate('/login');

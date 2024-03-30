@@ -4,25 +4,50 @@ import userpool from '../services/userpool';
 
 export default function ViewProfile() {
     const [viewUserObject, setViewUserObject] = useState(false);
-    
-    const currentUser = userpool.getCurrentUser();
-    currentUser.getSession((err, res)=> {
-        if (err) reject(err);
+    const [userProfile, setUserProfille] = useState({
+        email: '', 
+        address: '', 
+        phone_number: '', 
+        family_name: '', 
+        given_name: '', 
+        middle_name: '', 
     });
+    let currentUser = null;
 
-    const { 
-        email, 
-        address, 
-        phone_number, 
-        family_name, 
-        given_name, 
-        middle_name 
-    } = currentUser.signInUserSession.idToken.payload;
+    useEffect(()=> {
+        currentUser = userpool.getCurrentUser();
+        currentUser.getSession((err, res)=> {
+            if (err) reject(err);
+        });
+        
+        const { 
+            email, 
+            address, 
+            phone_number, 
+            family_name, 
+            given_name, 
+            middle_name 
+        } = currentUser.signInUserSession.idToken.payload;
 
+        setUserProfille({
+            email, 
+            address, 
+            phone_number, 
+            family_name, 
+            given_name, 
+            middle_name   
+        });
+    }, []);
+    
     const userObject = <div className="pre-body">
         <h1 className="form-header">User Object</h1>
         <div className="form-link">
-            <Link className="form-link" onClick={()=>setViewUserObject(false)}>View Profile</Link>
+            <Link 
+                className="form-link" 
+                onClick={()=>setViewUserObject(false)}
+            >
+                View Profile
+            </Link>
         </div>
         <pre>{JSON.stringify(currentUser, null, 2)}</pre>
     </div>;
@@ -35,7 +60,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='email'
                 type='text'
-                value={email}
+                value={userProfile.email}
                 autoComplete="off"
                 disabled
             />
@@ -46,7 +71,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='given_name'
                 type='text'
-                value={given_name}
+                value={userProfile.given_name}
                 autoComplete="off"
                 disabled
             />
@@ -57,7 +82,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='middle_name'
                 type='text'
-                value={middle_name}
+                value={userProfile.middle_name}
                 autoComplete="off"
                 disabled
             />
@@ -68,7 +93,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='family_name'
                 type='text'
-                value={family_name}
+                value={userProfile.family_name}
                 autoComplete="off"
                 disabled
             />
@@ -79,7 +104,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='phone_number'
                 type='text'
-                value={phone_number}
+                value={userProfile.phone_number}
                 autoComplete="off"
                 disabled
             />
@@ -90,7 +115,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='address'
                 type='text'
-                value={address.formatted}
+                value={userProfile.address.formatted}
                 autoComplete="off"
                 disabled
             />

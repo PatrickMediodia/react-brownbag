@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import Cookies from "universal-cookie";
-import { Link } from "react-router-dom";
 import logout from "../services/logout";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
 
 export default function Header() {
@@ -9,14 +9,11 @@ export default function Header() {
     const [user, setUser] = useContext(UserContext);
 
     const logoutHandler = () => {
+        cookies.remove('jwt');
         logout();
         setUser(null);
-        cookies.remove('jwt');
-        
         alert('Account has been signed out');
-        navigate('/');
     };
-
     
     return (
         <header>
@@ -32,7 +29,7 @@ export default function Header() {
                     </Link> : undefined
                     }
                     <Link 
-                        to={user ? '/posts' : '/login'} 
+                        to={user ? '/' : '/login'} 
                         className="form-link"
                         onClick={user ? logoutHandler : undefined}
                     >
