@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { getUser} from '../services/userpool';
+import profile_img from '../assets/profile.png';
 
 export default function ViewProfile() {
     const [viewUserObject, setViewUserObject] = useState(false);
 
     const currentUser = getUser();
     const { 
-        email, 
+        email,
         address, 
         phone_number, 
         family_name, 
         given_name, 
         middle_name 
     } = currentUser.signInUserSession.idToken.payload;
-
+    
     const userObject = <div className="pre-body">
         <h1 className="form-header">User Object</h1>
         <div className="form-link">
@@ -30,6 +31,13 @@ export default function ViewProfile() {
 
     const profile =  <div className="form">
         <h1 className="form-header">Profile</h1>
+        <div className='profile-container'>
+            <img 
+                src={profile_img} 
+                alt='profile photo' 
+                className='profile-img'
+            />
+        </div>
         <div className="form-field">
             Email: 
             <input
@@ -105,6 +113,6 @@ export default function ViewProfile() {
             <Link className="form-link" onClick={()=>setViewUserObject(true)}>View User Object</Link>
         </div>
     </div>;
-    
+
     return (viewUserObject ? userObject : profile);
 }

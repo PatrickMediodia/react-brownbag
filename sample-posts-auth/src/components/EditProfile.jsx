@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { getUser } from '../services/userpool';
+import profile_img from '../assets/profile.png';
 import { Link, useNavigate } from 'react-router-dom';
 import updateProfile from '../services/updateProfile';
 
@@ -39,6 +40,13 @@ export default function EditProfile() {
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className="form-header">Edit Profile</h1>
+            <div className='profile-container'>
+                <img 
+                    src={profile_img} 
+                    alt='profile photo' 
+                    className='profile-img'
+                />
+            </div>
             <div className="form-field">
                 Email: 
                 <input
@@ -101,7 +109,7 @@ export default function EditProfile() {
                     className="form-input"
                     name='address'
                     type='text'
-                    value={address}
+                    value={address.formatted}
                     autoComplete="off"
                     onChange={handleChange}
                 />

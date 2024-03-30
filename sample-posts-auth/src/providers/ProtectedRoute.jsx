@@ -6,9 +6,9 @@ import { getCookies } from '../utils/manageUserCookies';
 
 const UserProvider = (props) => {
     const navigate = useNavigate();
-    const [user, setUser] = useContext(UserContext);
     const isMounted = useRef(false);
-    
+    const [user, setUser] = useContext(UserContext);
+
     useEffect(() => {
         if (user === null) {
             const jwt = getCookies();
@@ -21,7 +21,7 @@ const UserProvider = (props) => {
         }
         isMounted.current = true;
     }, []);
-
+    
     return (
         <>
             {isMounted ? props.children : undefined}
