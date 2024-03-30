@@ -1,16 +1,12 @@
 import { useState } from 'react';
-import userpool from '../services/userpool';
+import { getUser } from '../services/userpool';
 import { Link, useNavigate } from 'react-router-dom';
 import updateProfile from '../services/updateProfile';
 
 export default function EditProfile() {
     const navigate = useNavigate();
 
-    const currentUser = userpool.getCurrentUser();
-    currentUser.getSession((err, res)=> {
-        if (err) reject(err);
-    });
-
+    const currentUser = getUser();
     const { 
         email, 
         address, 
@@ -19,15 +15,6 @@ export default function EditProfile() {
         given_name, 
         middle_name 
     } = currentUser.signInUserSession.idToken.payload;
-
-    const [formData, setFormData] = useState({
-        email, 
-        phone_number, 
-        family_name, 
-        given_name, 
-        middle_name,
-        address: address.formatted,
-    });
 
     const handleChange = (e) => {
         setFormData((prev) => {
@@ -58,7 +45,7 @@ export default function EditProfile() {
                     className="form-input"
                     name='email'
                     type='text'
-                    value={formData.email}
+                    value={email}
                     autoComplete="off"
                     onChange={handleChange}
                     disabled
@@ -70,7 +57,7 @@ export default function EditProfile() {
                     className="form-input"
                     name='given_name'
                     type='text'
-                    value={formData.given_name}
+                    value={given_name}
                     autoComplete="off"
                     onChange={handleChange}
                 />
@@ -81,7 +68,7 @@ export default function EditProfile() {
                     className="form-input"
                     name='middle_name'
                     type='text'
-                    value={formData.middle_name}
+                    value={middle_name}
                     autoComplete="off"
                     onChange={handleChange}
                 />
@@ -92,7 +79,7 @@ export default function EditProfile() {
                     className="form-input"
                     name='family_name'
                     type='text'
-                    value={formData.family_name}
+                    value={family_name}
                     autoComplete="off"
                     onChange={handleChange}
                 />
@@ -103,7 +90,7 @@ export default function EditProfile() {
                     className="form-input"
                     name='phone_number'
                     type='text'
-                    value={formData.phone_number}
+                    value={phone_number}
                     autoComplete="off"
                     onChange={handleChange}
                 />
@@ -114,7 +101,7 @@ export default function EditProfile() {
                     className="form-input"
                     name='address'
                     type='text'
-                    value={formData.address}
+                    value={address}
                     autoComplete="off"
                     onChange={handleChange}
                 />
