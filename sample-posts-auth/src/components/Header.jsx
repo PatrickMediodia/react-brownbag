@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import logout from "../services/logout";
 import { UserContext } from "../providers/UserProvider";
-import { removeCookies } from "../utils/manageUserCookies";
+import { removeCookies } from "../utils/userCookies";
 
 export default function Header() {
     const [user, setUser] = useContext(UserContext);

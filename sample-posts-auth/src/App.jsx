@@ -1,5 +1,5 @@
 import './App.css';
-import UserProvider from './providers/UserProvider';
+import { UserContext } from './providers/UserProvider';
 import ProtectedRoute from './providers/ProtectedRoute';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
@@ -15,6 +15,10 @@ import ConfirmSignUp from './components/ConfirmSignUp';
 import ChangePassword from './components/ChangePassword';
 import ForgotPassword from './components/ForgotPassword';
 import ConfirmForgotPassword from './components/ConfirmForgotPassword';
+
+
+import { useContext, useEffect } from 'react';
+import { getCookies } from './utils/userCookies';
 
 function Layout() {
   return (
@@ -89,10 +93,17 @@ const router = createBrowserRouter([
 );
 
 function App() {
+  const [user, setUser] = useContext(UserContext);
+
+  useEffect(() => {
+    const jwt = getCookies();
+    if (user === null && jwt !== undefined) {
+      setUser(jwt); 
+    }
+  }, []);
+  
   return (
-    <UserProvider>
-      <RouterProvider router={router} />
-    </UserProvider>
+    <RouterProvider router={router} />
   )
 }
 

@@ -10,10 +10,11 @@ export function setCookies(userData) {
 
     const jwt = userData.signInUserSession.accessToken.jwtToken;
     cookies.set(key, jwt, { maxAge:  expiryTime });
+    console.log(cookies.get('jwt'));
 }
 
 export function getCookies() {
-    cookies.get(key);
+    return cookies.get(key);
 }
 
 export function removeCookies() {

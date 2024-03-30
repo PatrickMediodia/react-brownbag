@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import authenticate from "../services/authenticate";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../providers/UserProvider";
-import { setCookies } from "../utils/manageUserCookies";
+import { setCookies } from "../utils/userCookies";
 
 export default function Login() {
     const navigate = useNavigate();

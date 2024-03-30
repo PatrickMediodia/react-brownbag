@@ -2,9 +2,9 @@
 import { UserContext } from './UserProvider';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect,useRef } from 'react';
-import { getCookies } from '../utils/manageUserCookies';
+import { getCookies } from '../utils/userCookies';
 
-const UserProvider = (props) => {
+export default function ProtectedRoute(props) {
     const navigate = useNavigate();
     const isMounted = useRef(false);
     const [user, setUser] = useContext(UserContext);
@@ -21,12 +21,10 @@ const UserProvider = (props) => {
         }
         isMounted.current = true;
     }, []);
-    
+
     return (
         <>
             {isMounted ? props.children : undefined}
         </>
     );
 };
-
-export default UserProvider;
