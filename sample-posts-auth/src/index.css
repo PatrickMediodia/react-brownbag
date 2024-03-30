@@ -25,6 +25,14 @@ header, footer {
   text-align: center;
 }
 
+header {
+  margin-bottom: 2rem;
+}
+
+footer {
+  margin-top: 2rem;
+}
+
 p {
   padding: 0.75rem 0rem;
 }
@@ -45,7 +53,7 @@ li {
 }
 
 .content-body {
-  min-height: 86vh;
+  min-height: 78vh;
   min-width: 100%;
   display: flex;
   align-items: center;
@@ -155,10 +163,10 @@ li {
 
 .profile-container {
   text-align: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 .profile-img {
-  max-width: 50%;
+  max-width: 40%;
   border-radius: 50%;
   border-style: solid;
   border-width: 2px;
