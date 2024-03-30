@@ -1,5 +1,5 @@
 import Cookies from 'universal-cookie';
-import { useContext, useEffect } from 'react';
+import { useContext, useLayoutEffect } from 'react';
 import { UserContext } from './UserProvider';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ const UserProvider = (props) => {
     const navigate = useNavigate();
     const [user, setUser] = useContext(UserContext);
 
-    useEffect(() => {
+    useLayoutEffect(()=> {
         if (user === null) {
             const jwt = cookies.get('jwt');
             if (jwt !== undefined) {     
@@ -18,7 +18,7 @@ const UserProvider = (props) => {
             }
         }
     }, []);
-
+    
     return (
         <>
             {props.children}
