@@ -82,6 +82,9 @@ li {
 
 .post-image {
   max-width: 100%;
+  border-style:solid;
+  border-width: 0.5px;
+  margin-top: 10px;
 }
 
 .message-container {

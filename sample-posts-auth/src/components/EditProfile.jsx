@@ -1,16 +1,12 @@
 import { useState } from 'react';
-import userpool from '../services/userpool';
+import { getUser } from '../services/userpool';
 import { Link, useNavigate } from 'react-router-dom';
 import updateProfile from '../services/updateProfile';
 
 export default function EditProfile() {
     const navigate = useNavigate();
 
-    const currentUser = userpool.getCurrentUser();
-    currentUser.getSession((err, res)=> {
-        if (err) reject(err);
-    });
-
+    const currentUser = getUser();
     const { 
         email, 
         address, 
