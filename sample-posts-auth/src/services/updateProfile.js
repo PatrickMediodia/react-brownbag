@@ -1,13 +1,9 @@
-import userpool from './userpool';
+import { getUser } from './userpool';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 
 export default function updateProfile({ email, given_name, middle_name, family_name, phone_number, birthdate, address }) {
-    const currentUser = userpool.getCurrentUser();
-
     return new Promise((resolve, reject) => {
-        currentUser.getSession((err, res)=> {
-            if (err) reject(err);
-        });
+        const currentUser = getUser();
 
         const attributeList = [
             new CognitoUserAttribute({

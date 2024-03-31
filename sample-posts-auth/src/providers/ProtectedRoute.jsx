@@ -14,7 +14,7 @@ export default function ProtectedRoute(props) {
             const jwt = getCookies();
             if (jwt !== undefined) {     
                 setUser(jwt);
-                console.log(`Kept User Session: ${jwt}`)      
+                console.log(`Kept User Session: ${jwt}`);   
             } else {
                 navigate('/login');
             }
