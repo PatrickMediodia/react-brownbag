@@ -1,20 +1,18 @@
-
 import { UserContext } from './UserProvider';
 import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect,useRef } from 'react';
 import { getCookies } from '../utils/userCookies';
+import { useContext, useEffect, useRef } from 'react';
 
 export default function ProtectedRoute(props) {
     const navigate = useNavigate();
     const isMounted = useRef(false);
     const [user, setUser] = useContext(UserContext);
-
+    
     useEffect(() => {
         if (user === null) {
             const jwt = getCookies();
             if (jwt !== undefined) {     
                 setUser(jwt);
-                console.log(`Kept User Session: ${jwt}`);   
             } else {
                 navigate('/login');
             }

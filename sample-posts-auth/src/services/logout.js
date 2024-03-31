@@ -1,6 +1,6 @@
-import userpool from './userpool';
+import { getUser } from './userpool';
 
 export default async function logout() {
-    const user = await userpool.getCurrentUser();
-    user.signOut();
+    const currentUser = getUser();
+    currentUser.signOut();
 };
