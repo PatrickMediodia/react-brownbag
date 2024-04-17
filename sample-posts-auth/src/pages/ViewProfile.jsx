@@ -1,21 +1,30 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import getUser from '../services/getUser';
+import { useState, useEffect } from 'react';
 import profile_img from '../assets/profile.png';
+import getUser, { getUserAttributes } from '../services/getUser';
+
+const initialstate = {
+    email: '', 
+    address: '', 
+    phone_number: '', 
+    family_name: '', 
+    given_name: '', 
+    middle_name: '',    
+}
 
 export default function ViewProfile() {
-    const [viewUserObject, setViewUserObject] = useState(false);
-
     const currentUser = getUser();
-    const { 
-        email,
-        address, 
-        phone_number, 
-        family_name, 
-        given_name, 
-        middle_name 
-    } = currentUser.signInUserSession.idToken.payload;
     
+    const [viewUserObject, setViewUserObject] = useState(false);
+    const [formData, setFormData] = useState(initialstate);
+    
+    useEffect(() => {
+        const getUserAttributesAsync = async () => {
+            setFormData(await getUserAttributes());
+        };
+        getUserAttributesAsync();
+    }, []);
+
     const userObject = <div className="pre-body">
         <h1 className="form-header">User Object</h1>
         <div className="form-link">
@@ -44,7 +53,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='email'
                 type='text'
-                value={email}
+                value={formData.email}
                 autoComplete="off"
                 disabled
             />
@@ -55,7 +64,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='given_name'
                 type='text'
-                value={given_name}
+                value={formData.given_name}
                 autoComplete="off"
                 disabled
             />
@@ -66,7 +75,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='middle_name'
                 type='text'
-                value={middle_name}
+                value={formData.middle_name}
                 autoComplete="off"
                 disabled
             />
@@ -77,7 +86,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='family_name'
                 type='text'
-                value={family_name}
+                value={formData.family_name}
                 autoComplete="off"
                 disabled
             />
@@ -88,7 +97,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='phone_number'
                 type='text'
-                value={phone_number}
+                value={formData.phone_number}
                 autoComplete="off"
                 disabled
             />
@@ -99,7 +108,7 @@ export default function ViewProfile() {
                 className="form-input"
                 name='address'
                 type='text'
-                value={address.formatted}
+                value={formData.address}
                 autoComplete="off"
                 disabled
             />

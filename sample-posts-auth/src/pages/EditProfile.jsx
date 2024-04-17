@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import getUser from '../services/getUser';
 import { Link, useNavigate } from 'react-router-dom';
 import updateProfile from '../services/updateProfile';
+import { getUserAttributes } from '../services/getUser';
 
 const initialstate = {
     email: '', 
@@ -15,28 +15,14 @@ const initialstate = {
 export default function EditProfile() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState(initialstate);
-
-    useEffect(() => {
-        const currentUser = getUser();
-        const { 
-            email, 
-            address, 
-            phone_number, 
-            family_name, 
-            given_name, 
-            middle_name 
-        } = currentUser.signInUserSession.idToken.payload;
-        
-        setFormData({
-            email, 
-            phone_number, 
-            family_name, 
-            given_name, 
-            middle_name,
-            address: address.formatted,
-        });
-    }, []);
     
+    useEffect(() => {
+        const getUserAttributesAsync = async () => {
+            setFormData(await getUserAttributes());
+        };
+        getUserAttributesAsync();
+    }, []);
+
     const handleChange = (e) => {
         setFormData((prev) => {
             return {
