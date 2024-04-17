@@ -5,6 +5,8 @@ export default function updateProfile({ email, given_name, middle_name, family_n
     return new Promise((resolve, reject) => {
         const currentUser = getUser();
 
+        console.log(currentUser);
+
         const attributeList = [
             new CognitoUserAttribute({
                 Name: 'email',
