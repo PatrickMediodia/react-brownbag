@@ -4,8 +4,8 @@ import { getCookies } from '../utils/userCookies';
 import { useContext, useEffect, useRef } from 'react';
 
 export default function ProtectedRoute(props) {
-    const isMounted = useRef(false);
     const navigate = useNavigate();
+    const isMounted = useRef(false);
     const [user, setUser] = useContext(UserContext);
     
     useEffect(() => {

@@ -5,12 +5,13 @@ import { UserContext } from './providers/UserProvider';
 import ProtectedRoute from './providers/ProtectedRoute';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
-import Login from './pages/Login';
-import Posts from './pages/Posts';
 import Footer from './components/Footer';
 import Header from './components/Header';
-import SignUp from './pages/SignUp';
 import Message from './components/Message';
+
+import Login from './pages/Login';
+import Posts from './pages/Posts';
+import SignUp from './pages/SignUp';
 import ViewProfile from './pages/ViewProfile';
 import EditProfile from './pages/EditProfile';
 import ConfirmSignUp from './pages/ConfirmSignUp';

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getUser } from '../services/userpool';
+import getUser from '../services/getUser';
 import profile_img from '../assets/profile.png';
 
 export default function ViewProfile() {

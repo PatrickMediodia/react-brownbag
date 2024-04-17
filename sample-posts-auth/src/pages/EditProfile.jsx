@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getUser } from '../services/userpool';
+import getUser from '../services/getUser';
 import { Link, useNavigate } from 'react-router-dom';
 import updateProfile from '../services/updateProfile';
 
@@ -44,7 +44,7 @@ export default function EditProfile() {
             console.log(err);
         }
     };
-
+    
     return (
         <form className="form" onSubmit={handleSubmit}>
             <h1 className="form-header">Edit Profile</h1>

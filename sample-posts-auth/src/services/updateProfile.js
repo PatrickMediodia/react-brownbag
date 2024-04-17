@@ -1,4 +1,4 @@
-import { getUser } from './userpool';
+import getUser from './getUser';
 import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 
 export default function updateProfile({ email, given_name, middle_name, family_name, phone_number, birthdate, address }) {

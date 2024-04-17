@@ -5,12 +5,4 @@ const userPoolData = new CognitoUserPool({
   ClientId: import.meta.env.VITE_APP_CLIENT_ID,
 });
 
-export function getUser() {
-  const currentUser = userPoolData.getCurrentUser();
-  currentUser.getSession((err, res)=> {
-    if (err) reject(err);
-  });
-  return currentUser;
-}
-
 export default userPoolData;

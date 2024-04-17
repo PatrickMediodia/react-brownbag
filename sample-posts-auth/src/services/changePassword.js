@@ -1,4 +1,4 @@
-import { getUser } from './userpool';
+import getUser from "./getUser";
 
 export default function changePassword({ oldPassword, newPassword }) {
     return new Promise((resolve, reject) => {
