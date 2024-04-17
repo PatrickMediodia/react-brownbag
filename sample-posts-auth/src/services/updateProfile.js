@@ -4,9 +4,7 @@ import { CognitoUserAttribute } from 'amazon-cognito-identity-js';
 export default function updateProfile({ email, given_name, middle_name, family_name, phone_number, birthdate, address }) {
     return new Promise((resolve, reject) => {
         const currentUser = getUser();
-
-        console.log(currentUser);
-
+        
         const attributeList = [
             new CognitoUserAttribute({
                 Name: 'email',

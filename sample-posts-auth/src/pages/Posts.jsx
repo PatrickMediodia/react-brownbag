@@ -1,4 +1,4 @@
-import Post from "./Post";
+import Post from "../components/Post";
 import getPosts from '../utils/getPosts';
 import { useEffect, useState } from "react";
 

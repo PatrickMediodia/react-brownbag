@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { getUser} from '../services/userpool';
+import { getUser } from '../services/userpool';
 import profile_img from '../assets/profile.png';
 
 export default function ViewProfile() {
@@ -29,7 +29,7 @@ export default function ViewProfile() {
         <pre>{JSON.stringify(currentUser, null, 2)}</pre>
     </div>;
 
-    const profile =  <div className="form">
+    const profile = <div className="form">
         <h1 className="form-header">Profile</h1>
         <div className='profile-container'>
             <img 
