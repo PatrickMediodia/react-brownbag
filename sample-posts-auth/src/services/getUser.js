@@ -1,5 +1,4 @@
 import userPoolData from "./userpool";
-import { setCookies } from "../utils/userCookies";
 
 export function getUser() {
     const currentUser = userPoolData.getCurrentUser();
@@ -7,7 +6,9 @@ export function getUser() {
     currentUser.getSession((err, res)=> {
         if (err) throw err;
     });
-    
+
+    console.log(currentUser);
+
     return currentUser;
 }
 

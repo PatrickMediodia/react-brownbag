@@ -1,30 +1,42 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import getUser from '../services/getUser';
 import { Link, useNavigate } from 'react-router-dom';
 import updateProfile from '../services/updateProfile';
 
+const initialstate = {
+    email: '', 
+    address: '', 
+    phone_number: '', 
+    family_name: '', 
+    given_name: '', 
+    middle_name: '',    
+}
+
 export default function EditProfile() {
     const navigate = useNavigate();
+    const [formData, setFormData] = useState(initialstate);
 
-    const currentUser = getUser();
-    const { 
-        email, 
-        address, 
-        phone_number, 
-        family_name, 
-        given_name, 
-        middle_name 
-    } = currentUser.signInUserSession.idToken.payload;
-
-    const [formData, setFormData] = useState({
-        email, 
-        phone_number, 
-        family_name, 
-        given_name, 
-        middle_name,
-        address: address.formatted,
-    });
-
+    useEffect(() => {
+        const currentUser = getUser();
+        const { 
+            email, 
+            address, 
+            phone_number, 
+            family_name, 
+            given_name, 
+            middle_name 
+        } = currentUser.signInUserSession.idToken.payload;
+        
+        setFormData({
+            email, 
+            phone_number, 
+            family_name, 
+            given_name, 
+            middle_name,
+            address: address.formatted,
+        });
+    }, []);
+    
     const handleChange = (e) => {
         setFormData((prev) => {
             return {

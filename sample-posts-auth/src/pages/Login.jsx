@@ -47,7 +47,7 @@ export default function Login() {
         try {
             const userData = await authenticate(loginCredentials);
             setCookies(userData);
-            setUser(userData.signInUserSession.accessToken.jwtToken);
+            setUser(userData.accessToken.jwtToken);
             navigate('/posts');
         } catch(err) {
             console.log(err);

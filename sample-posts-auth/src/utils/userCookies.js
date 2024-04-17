@@ -4,11 +4,11 @@ const cookies = new Cookies(null, { path: '/' });
 const key = 'jwt';
 
 export function setCookies(userData) {
-    const jwtExpiryTime = userData.signInUserSession.accessToken.payload.exp * 1000;
+    const jwtExpiryTime = userData.accessToken.payload.exp * 1000;
     const currentTime = new Date().getTime();
     const expiryTime = jwtExpiryTime - currentTime;
 
-    const jwt = userData.signInUserSession.accessToken.jwtToken;
+    const jwt = userData.accessToken.jwtToken;
     cookies.set(key, jwt, { maxAge:  expiryTime });
     console.log(cookies.get('jwt'));
 }
